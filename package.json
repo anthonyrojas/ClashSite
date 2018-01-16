@@ -1,0 +1,26 @@
+{
+  "name": "normies",
+  "version": "1.0.0",
+  "description": "site for clash royale clan build using a node and express backend",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "bcrypt-nodejs": "*",
+    "body-parser": "*",
+    "express": "*",
+    "fs": "*",
+    "jwt": "*",
+    "mongodb": "*",
+    "mongoose": "*",
+    "morgan": "*",
+    "multer": "*",
+    "path": "*",
+    "request": "*",
+    "socket.io": "*"
+  },
+  "author": "Anthony",
+  "license": "ISC"
+}
