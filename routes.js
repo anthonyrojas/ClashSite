@@ -1,35 +1,50 @@
-var express = require('express');
-var request = require('request');
+const express = require('express');
+const request = require('request');
+const path = require('path');
+const config = require('./config');
 /*import controllers for messaging here*/
+const clanController = require('./controllers/clanController');
+const filesController = require('./controllers/filesController');
 
-/*create authentication controls and middleware routes*/
+/*TODO: create authentication controls and middleware routes*/
 
 module.exports = (app)=>{
     var pageRoutes = express.Router();
     var chatRoutes = express.Router();
     var apiRoutes = express.Router();
+    var fileRoutes = express.Router();
+
+    /*routes for serving data from cr-api.com*/
+    /*GET player*/
+    apiRoutes.get('/player/:tag', clanController.getPlayer);
 
     /*GET clan*/
-    apiRoutes.get('/clan/:tag', (req, res)=>{
-        var playerTag = req.params.tag;
-        res.send('Tada! player works');
-    });
-
-    apiRoutes.get('/clan/:tag', (req, res)=>{
-        var clanTag = req.params.tag;
-        res.send('Tada! clan works');
-    });
+    apiRoutes.get('/clan/:tag', clanController.getClan);
 
     app.use('/api', apiRoutes);
 
-    /*GET for serving up static pages*/
+    /*routes for serving files (pictures, etc.)*/
+    /*GET pictures in media/home folder*/
+    fileRoutes.get('/media/home', filesController.getPictures);
+
+    app.use('/files', fileRoutes);
+
+    /*routes for serving static pages*/
     /*index page*/
-    app.get('/', (req, res)=>{
-        res.sendFile('clan.html');
+    pageRoutes.get('/', (req, res)=>{
+        res.sendFile(path.resolve('./public/index.html'));
     });
 
     /*clan page*/
-    app.get('/normies', (req, res)=>{
-        res.sendFile('index.html');
+    pageRoutes.get('/clan', (req, res)=>{
+        res.sendFile(path.resolve('./public/clan.html'));
     });
+
+    /*about page*/
+    pageRoutes.get('/about', (req, res)=>{
+        res.sendFile(path.resolve('./public/about.html'));
+    });
+
+    /*page router*/
+    app.use('/', pageRoutes);
 }

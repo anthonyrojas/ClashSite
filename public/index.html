@@ -3,10 +3,36 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Home</title>
+    <title>The Normies</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-    <p>This is the index</p>    
+    <nav>
+        <ul>
+            <li><a href="/clan">Clan</a></li>
+            <li><a href="/about">About</a></li>
+        </ul>
+    </nav>
+    <div id="bannerInner">
+
+    </div>
 </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.getJSON('http://localhost:5000/files/media/home')
+            .done(function(data){
+                var i = 0;
+                $.each(data, function(key, val){
+                    if(i==0){
+                        $('#bannerInner').append('<img class="d-block w-100" alt="home page background" src="' + val.name + '">');
+                    }
+                    else{
+                        $('#bannerInner').append('<img class="d-block w-100" alt="home page background" src="' + val.name + '">');
+                    }
+                    i += 1;
+                });
+            });
+        });
+    </script>
 </html>
