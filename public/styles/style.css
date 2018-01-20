@@ -27,11 +27,17 @@ body{
     max-height: fit-content;
 }
 
-#home-content{
+.container{
     padding-top: 1em;
     padding-bottom: 1em;
     background-color: #434D5A;
     color: black;
+    text-align: center;
+}
+
+.container-fluid{
+    background-color: #434D5A;
+    color: white;
     text-align: center;
 }
 
