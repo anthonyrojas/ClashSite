@@ -21,6 +21,12 @@ module.exports = (app)=>{
     /*GET clan*/
     apiRoutes.get('/clan/:tag', clanController.getClan);
 
+    /*GET clan member with role*/
+    apiRoutes.get('/clan/:tag/:role', clanController.getClanMemberWithRole);
+
+    /*GET clan history*/
+    apiRoutes.get('/clan/history/:tag', clanController.getClanHistory);
+
     app.use('/api', apiRoutes);
 
     /*routes for serving files (pictures, etc.)*/

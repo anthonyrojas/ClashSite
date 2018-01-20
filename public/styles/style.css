@@ -1,0 +1,54 @@
+body{
+    background: #343a40!important;
+}
+
+.navbar-brand{
+    font-size: 1.5em;
+    font-family: 'Roboto Slab', sans-serif;
+    font-weight: bolder;
+}
+
+.nav-item:hover{
+    background-color: black;
+}
+
+/*#home-slides{
+    max-height: 50em;
+    overflow: hidden;
+}*/
+
+#bannerSlides{
+    max-height: 50em;
+    overflow: hidden;
+}
+
+.carousel-item img{
+    height: inherit;
+    max-height: fit-content;
+}
+
+#home-content{
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: #434D5A;
+    color: black;
+    text-align: center;
+}
+
+footer{
+    background: black;
+    color: antiquewhite;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    overflow: hidden;
+}
+
+footer img{
+    max-width: 3em;
+    max-height: 3em
+}
+
+hr{
+    border-width: 0.2em;
+    border-color: #343a40;
+}
