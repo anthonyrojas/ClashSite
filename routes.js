@@ -51,6 +51,11 @@ module.exports = (app)=>{
         res.sendFile(path.resolve('./public/about.html'));
     });
 
+    /*member info page*/
+    pageRoutes.get('/member/:tag', (req, res)=>{
+        res.sendFile(path.resolve('./public/member.html'));
+    });
+
     /*page router*/
     app.use('/', pageRoutes);
 }

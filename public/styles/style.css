@@ -18,9 +18,12 @@ body{
 }*/
 
 #bannerSlides{
+    margin-top: 1.5em;
     max-height: 50em;
     overflow: hidden;
 }
+
+
 
 .carousel-item img{
     height: inherit;

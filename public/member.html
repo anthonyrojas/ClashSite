@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Clan</title>
+    <title>Player Info</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -13,7 +13,7 @@
     <!--google fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab">
     <!--custom css-->
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
     <header>
@@ -22,15 +22,15 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="#">
-                <img src="./media/nav/navbrand.png" width="40" height="40" class="d-inline-block align-top">
-                    The Normies
+                <img src="/media/nav/navbrand.png" width="40" height="40" class="d-inline-block align-top">
+                The Normies
             </a>                
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="navbar-nav mr-auto mt-2 mt-md-0">
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link" href="/clan">Our Clan</a>
                     </li>
                     <li class="nav-item">
@@ -39,55 +39,28 @@
                 </ul>
             </div>
         </nav>
-        <img class="img-fluid" src="./media/header/banner.jpg" style="width:100%; height: auto;">
+        <img class="img-fluid" src="/media/header/banner.jpg" style="width:100%; height: auto;">
     </header>
-    <div class="container-fluid">
-        <h3>Compare Members</h3>
-        <div class="form-group row">
-            <div class="col-md-3 center">
-                <input class="form-control" type="text">
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-md-3">
-                <input class="form-control" type="text">
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-md-3">
-                <input class="form-control" type="text">
-            </div>
-        </div>
-    </div>
     <div class="container">
-        <table class="table table-dark">
-            <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Trophies</th>
-                    <th scope="col">Arena</th>
-                    <th scope="col">Clan Chest Crowns</th>
-                </tr>
-            </thead>
-            <tbody id="member-list">
+        <div id="member-info">
 
-            </tbody>
-        </table>
+        </div>
     </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
+    var currPath = window.location.pathname;
+    var memberTag = currPath.replace("/member/", "");
     $(document).ready(function(){
-        $.getJSON('/api/clan/8UJRVGY9')
-        .done(function(data){
-            var memberArray = data.members;
-            $.each(memberArray, function(key, val){
-                $('#member-list').append('<tr>');
-                $('#member-list').append('<td><a href="/member/' + val.tag + '">' + val.name + '</a>');
-                $('#member-list').append('<td>' + val.trophies);
-                $('#member-list').append('<td>' + val.arena.arena);
-                $('#member-list').append('<td>' + val.clanChestCrowns);
-            });
+        $.getJSON('/api/player/' + memberTag).done(function(data){
+            $('#member-info').append('<p>Tag: ' + data.tag);
+            $('#member-info').append('<p>Name: ' + data.name);
+            $('#member-info').append('<p>Trophies: ' + data.trophies);
+            $('#member-info').append('<p>Arena Name: ' + data.arena.name);
+            $('#member-info').append('<p>Arena: ' + data.arena.arena);
+            $('#member-info').append('<p>Player Level: ' + data.stats.level);
+            $('#member-info').append('<p>Wins: ' + data.games.wins);
+            $('#member-info').append('<p>Losses: ' + data.games.losses);
         });
     });
 </script>
