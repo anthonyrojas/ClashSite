@@ -83,7 +83,7 @@
             var memberArray = data.members;
             $.each(memberArray, function(key, val){
                 $('#member-list').append('<tr>');
-                $('#member-list').append('<td><a href="/member/' + val.tag + '">' + val.name + '</a>');
+                $('#member-list').append('<td><a href="/player/' + val.tag + '">' + val.name + '</a>');
                 $('#member-list').append('<td>' + val.trophies);
                 $('#member-list').append('<td>' + val.arena.arena);
                 $('#member-list').append('<td>' + val.clanChestCrowns);

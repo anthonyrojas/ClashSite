@@ -52,7 +52,7 @@ module.exports = (app)=>{
     });
 
     /*member info page*/
-    pageRoutes.get('/member/:tag', (req, res)=>{
+    pageRoutes.get('/player/:tag', (req, res)=>{
         res.sendFile(path.resolve('./public/member.html'));
     });
 

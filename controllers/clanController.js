@@ -27,7 +27,7 @@ exports.getClan = (req, res)=>{
 exports.getPlayer = (req, res)=>{
     var playerTag = req.params.tag;
     var options = {
-        url: config.host + '/player/' + playerTag,
+        url: config.host + '/player/' + playerTag + '?exclude=battles,achievements,cards',
         headers: {
             auth: config.authKey
         }

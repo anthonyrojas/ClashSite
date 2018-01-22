@@ -49,10 +49,8 @@
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-    var currPath = window.location.pathname;
-    var memberTag = currPath.replace("/member/", "");
     $(document).ready(function(){
-        $.getJSON('/api/player/' + memberTag).done(function(data){
+        $.getJSON('/api/' + window.location.pathname).done(function(data){
             $('#member-info').append('<p>Tag: ' + data.tag);
             $('#member-info').append('<p>Name: ' + data.name);
             $('#member-info').append('<p>Trophies: ' + data.trophies);
