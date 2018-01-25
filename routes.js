@@ -2,7 +2,9 @@ const express = require('express');
 const request = require('request');
 const path = require('path');
 const config = require('./config');
-/*import controllers for messaging here*/
+
+/*import controllers*/
+const pageController = require('./controllers/pageController');
 const clanController = require('./controllers/clanController');
 const filesController = require('./controllers/filesController');
 
@@ -21,9 +23,6 @@ module.exports = (app)=>{
     /*GET clan*/
     apiRoutes.get('/clan/:tag', clanController.getClan);
 
-    /*GET clan member with role*/
-    apiRoutes.get('/clan/:tag/:role', clanController.getClanMemberWithRole);
-
     /*GET clan history*/
     apiRoutes.get('/clan/history/:tag', clanController.getClanHistory);
 
@@ -37,24 +36,18 @@ module.exports = (app)=>{
 
     /*routes for serving static pages*/
     /*index page*/
-    pageRoutes.get('/', (req, res)=>{
-        res.sendFile(path.resolve('./public/index.html'));
-    });
+    //pageRoutes.get('/', pageController.getIndexPage);
+    pageRoutes.get('/', pageController.renderIndexPage);
 
     /*clan page*/
-    pageRoutes.get('/clan', (req, res)=>{
-        res.sendFile(path.resolve('./public/clan.html'));
-    });
-
+    //pageRoutes.get('/clan',pageController.getClanPage);
+    pageRoutes.get('/clan', clanController.getNormiesMembers, pageController.renderClanPage);
+    
     /*about page*/
-    pageRoutes.get('/about', (req, res)=>{
-        res.sendFile(path.resolve('./public/about.html'));
-    });
+    pageRoutes.get('/about', pageController.getAboutPage);
 
-    /*member info page*/
-    pageRoutes.get('/player/:tag', (req, res)=>{
-        res.sendFile(path.resolve('./public/member.html'));
-    });
+    /*player info page*/
+    pageRoutes.get('/player/:tag', clanController.getPlayer, pageController.renderPlayerPage);
 
     /*page router*/
     app.use('/', pageRoutes);

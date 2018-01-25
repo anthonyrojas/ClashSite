@@ -72,32 +72,18 @@
                 </tr>
             </thead>
             <tbody id="member-list">
-
+                <%data.forEach(function(member){ %>
+                <tr>
+                    <td><a href="/player/<%= member.tag %>"><%= member.name %></a></td>
+                    <td><%= member.tropies %></td>
+                    <td><%= member.arena.arena %></td>
+                    <td><%= member.clanChestCrowns %></td>
+                </tr>
+                <% }); %>
             </tbody>
         </table>
     </div>
     </main>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function(){
-        $.getJSON('/api/clan/8UJRVGY9')
-        .done(function(data){
-            var memberArray = data.members;
-            $.each(memberArray, function(key, val){
-                $('#member-list').append('<tr>');
-                $('#member-list').append('<td><a href="/player/' + val.tag + '" class="memberClick" onclick="getTag(this);">' + val.name + '</a>');
-                $('#member-list').append('<td>' + val.trophies);
-                $('#member-list').append('<td>' + val.arena.arena);
-                $('#member-list').append('<td>' + val.clanChestCrowns);
-            });
-        });
-    });
-</script>
-<script>
-    function getTag(obj) {
-        localStorage.setItem('playerTag', obj.getAttribute("href"));
-        return true;
-    }
-</script>
 </html>

@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Player Info</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/media/favicon/icon.png">
     <!--bootstrap-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -14,6 +15,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab">
     <!--custom css-->
     <link rel="stylesheet" href="/styles/style.css">
+    <!--custom scripts-->
+    <!--<script type="text/javascript" src="/scripts/playerScript.js"></script>-->
 </head>
 <body>
     <header>
@@ -41,25 +44,43 @@
         </nav>
         <img class="img-fluid" src="/media/header/banner.jpg" style="width:100%; height: auto;">
     </header>
-    <div class="container">
-        <div id="member-info">
-
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <h3 class="card-header" id="player-name">
+                            <%= data.name %>
+                        </h3>
+                        <div class="card-block" id="player-info">
+                            <p class="card-text">Trophies: <%= data.trophies%></p>
+                            <p class="card-text">Arena Name: <%= data.arena.name%></p>
+                            <p class="card-text">Arena: <%= data.arena.arena%></p>
+                            <p class="card-text">Player Level: <%= data.stats.level%></p>
+                            <p class="card-text">Wins: <%= data.games.wins%></p>
+                            <p class="card-text">Losses: <%= data.games.losses%></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </main>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script>
+<!--<script>
     $(document).ready(function(){
-        $.getJSON('/api/' + window.location.pathname).done(function(data){
-            $('#member-info').append('<p>Tag: ' + data.tag);
-            $('#member-info').append('<p>Name: ' + data.name);
-            $('#member-info').append('<p>Trophies: ' + data.trophies);
-            $('#member-info').append('<p>Arena Name: ' + data.arena.name);
-            $('#member-info').append('<p>Arena: ' + data.arena.arena);
-            $('#member-info').append('<p>Player Level: ' + data.stats.level);
-            $('#member-info').append('<p>Wins: ' + data.games.wins);
-            $('#member-info').append('<p>Losses: ' + data.games.losses);
+        console.time('cache');
+        $.getJSON('/api' + localStorage.getItem('playerTag')).done(function(data){
+            $('#player-name').append(data.name + '[tag: ' + data.tag + ']');
+            $('#player-info').append('<img src="' + data.clan.badge.image + '">');
+            $('#player-info').append('<p class="card-text">Trophies: ' + data.trophies);
+            $('#player-info').append('<p class="card-text">Arena Name: ' + data.arena.name);
+            $('#player-info').append('<p class="card-text">Arena: ' + data.arena.arena);
+            $('#player-info').append('<p class="card-text">Player Level: ' + data.stats.level);
+            $('#player-info').append('<p class="card-text">Wins: ' + data.games.wins);
+            $('#player-info').append('<p class="card-text">Losses: ' + data.games.losses);
         });
+        console.timeEnd('cache');
     });
-</script>
+</script>-->
 </html>

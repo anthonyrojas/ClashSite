@@ -3,7 +3,7 @@
 const request = require('request');
 const config = require('../config');
 
-exports.getClan = (req, res)=>{
+exports.getClan = (req, res, next)=>{
     var clanTag = req.params.tag;
     var options = {
         url: config.host + '/clan/' + clanTag,
@@ -13,7 +13,7 @@ exports.getClan = (req, res)=>{
     };
     request(options, (error, response, body)=>{
         if(error){
-            res.json(JSON.parse(error));
+            throw new Error('failed to retrieve data, API must be down');
         }
         else if(!error && response.statusCode == 200){
             res.json(JSON.parse(body));
@@ -24,28 +24,31 @@ exports.getClan = (req, res)=>{
     });
 };
 
-exports.getPlayer = (req, res)=>{
+exports.getPlayer = (req, res, next)=>{
     var playerTag = req.params.tag;
     var options = {
-        url: config.host + '/player/' + playerTag + '?exclude=battles,achievements,cards',
+        url: config.host + '/player/' + playerTag + '?exclude=battles,achievements,cards,chestCycle',
         headers: {
             auth: config.authKey
         }
     };
     request(options, (error, response, body)=>{
         if(error){
-            res.json(JSON.parse(error));
+            throw new Error('failed to retrieve data, API must be down');
         }
-        else if(!error && response.statusCode == 200){
-            res.json(JSON.parse(body));
+        else if(!error && (response.statusCode === 200 || response.statusCode === 304)){
+            //res.json(JSON.parse(body));
+            res.locals.player = JSON.parse(body);
+            next();
         }
         else{
-            res.json(JSON.parse(body));
+            //res.json(JSON.parse(body));
+            next();
         }
     });
 };
 
-exports.getClanHistory = (req, res)=>{
+exports.getClanHistory = (req, res, next)=>{
     var clanTag = req.params.tag;
     var options = {
         url: config.host + '/clan/' + clanTag + '/history',
@@ -55,9 +58,9 @@ exports.getClanHistory = (req, res)=>{
     };
     request(options, (error, response, body)=>{
         if(error){
-            res.json(JSON.parse(error));
+            throw new Error('failed to retrieve data, API must be down');
         }
-        else if(!error && response.statusCode == 200){
+        else if(!error && (response.statusCode === 200 || response.statusCode === 304)){
             res.json(JSON.parse(body));
         }
         else{
@@ -66,21 +69,21 @@ exports.getClanHistory = (req, res)=>{
     });
 };
 
-exports.getClanMemberWithRole = (req, res)=>{
-    var role = req.params.role;
-    var clanTag = req.params.tag;
-    var options = {
-        url: config.host + '/clan/' + clanTag,
+exports.getNormiesMembers = (req, res, next)=>{
+    const options = {
+        url: config.host + '/clan/8UJRVGY9',
         headers: {
             auth: config.authKey
         }
     };
     request(options, (error, response, body)=>{
         if(error){
-            res.json(JSON.parse(error));
+            throw new Error('failed to retrieve data. API must be down');
         }
-        else if(!error && (response.statusCode == 200 || response.statusCode == 304)){
-            
+        else if(!error && (response.statusCode === 200 || response.statusCode === 304)){
+            var clanData = JSON.parse(body);
+            res.locals.normies = clanData.members;
+            next();
         }
     });
 };

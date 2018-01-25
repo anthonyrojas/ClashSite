@@ -14,7 +14,7 @@ var config = require('./config');
 /*Setting up middleware*/
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({extended: true}));
 //app.use(multer()); //for uploading files, will include in a future version
 
 /*Enable CORS from client-side*/
@@ -33,6 +33,8 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.listen(config.port, ()=>{
     console.log("Server is running on port " + config.port);
 });
+
+app.set('view engine', 'ejs');
 
 /*load routes*/
 routes(app);

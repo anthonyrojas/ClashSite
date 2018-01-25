@@ -2,7 +2,7 @@
 const fs = require('fs');
 const config = require('../config');
 
-exports.getPictures = (req, res)=>{
+exports.getPictures = (req, res, next)=>{
     var fileArr = [];
     var filePath = './public' + req.path + '/';
     //var filePath = p.resolve(filePathStr) + '/';
