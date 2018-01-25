@@ -48,7 +48,7 @@
         </div>
     <!--</div>-->
     <main>
-    <div class="container" id="home-content">
+    <div class="container" id="wrapper">
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
@@ -83,6 +83,15 @@
                     <h1 class="display-3">Our Fearless Leader</h1>
                     <hr class="my-2">
                     <div id="leader-home">
+                        <% for(var i=0; i < data.length; i++) {%>
+                            <% if(data[i].role == 'leader'){ %>
+                                <h3 class="display-5"><% data[i].name %></h3>
+                                <p class="lead">Level: <% data[i].expLevel %></p>
+                                <p class="lead">Trophies: <% data[i].trophies %></p>
+                                <p class="lead">Arena: <% data[i].arena.name %></p>
+                                <% i = data.length %>
+                            <% } %>
+                        <% } %>
                     </div>
                 </div>
             </div>
@@ -90,15 +99,13 @@
     </div>
     </main>
     <footer>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-5">
-                    Join Us On<br/>
-                    <a href="https://twitter.com/CR_Normies"><img src="./media/footer/twitter.png" alt="twitter"></a>
-                </div>
-                <div class="col-md-5">
-                    <p>Made by Sir Doge. Pls give doge coins.<p>
-                </div>
+        <div class="row">
+            <div class="col-md-5">
+                Join Us On<br/>
+                <a href="https://twitter.com/CR_Normies"><img src="./media/footer/twitter.png" alt="twitter"></a>
+            </div>
+            <div class="col-md-5">
+                <p>Made by Sir Doge. Pls give doge coins.<p>
             </div>
         </div>
     </footer>
@@ -121,7 +128,7 @@
             });
         });
     </script>
-    <script>
+    <!--<script>
         $(document).ready(function(){
             $.getJSON('/api/clan/8UJRVGY9')
             .done(function(data){
@@ -137,5 +144,5 @@
                 });
             });
         });
-    </script>
+    </script>-->
 </html>

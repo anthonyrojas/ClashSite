@@ -12,30 +12,35 @@ body{
     background-color: black;
 }
 
-/*#home-slides{
-    max-height: 50em;
-    overflow: hidden;
-}*/
-
 #bannerSlides{
     margin-top: 1.5em;
     max-height: 50em;
     overflow: hidden;
 }
 
-
-
 .carousel-item img{
     height: inherit;
     max-height: fit-content;
 }
 
-.container{
+#wrapper{
     padding-top: 1em;
     padding-bottom: 1em;
     background-color: #434D5A;
-    color: black;
+    color: white;
     text-align: center;
+}
+
+.card{
+    color: white;
+}
+
+.card-header{
+    background-color: #252525;
+}
+
+.card-block{
+    background-color: #3A3B3C;
 }
 
 .container-fluid{
@@ -60,4 +65,8 @@ footer img{
 hr{
     border-width: 0.2em;
     border-color: #343a40;
+}
+
+main [class^="col"]{
+    padding-top: 1.5em;
 }

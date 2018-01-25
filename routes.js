@@ -37,14 +37,14 @@ module.exports = (app)=>{
     /*routes for serving static pages*/
     /*index page*/
     //pageRoutes.get('/', pageController.getIndexPage);
-    pageRoutes.get('/', pageController.renderIndexPage);
+    pageRoutes.get('/', clanController.getNormiesMembers, pageController.renderIndexPage);
 
     /*clan page*/
     //pageRoutes.get('/clan',pageController.getClanPage);
     pageRoutes.get('/clan', clanController.getNormiesMembers, pageController.renderClanPage);
     
     /*about page*/
-    pageRoutes.get('/about', pageController.getAboutPage);
+    pageRoutes.get('/about', pageController.renderAboutPage);
 
     /*player info page*/
     pageRoutes.get('/player/:tag', clanController.getPlayer, pageController.renderPlayerPage);

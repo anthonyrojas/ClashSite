@@ -18,17 +18,22 @@ exports.getPlayerPage = (req, res, next)=>{
     res.sendFile(path.resolve('./public/player.html'));
 };
 
+/*render the index page*/
 exports.renderIndexPage = (req, res, next)=>{
     res.render(path.resolve('./public/views/index'), null);
 };
 
+/*render the clan page*/
 exports.renderClanPage = (req, res, next)=>{
     res.render(path.resolve('./public/views/clan'), {data: res.locals.normies});
 };
 
+/*render a player page*/
 exports.renderPlayerPage = (req, res, next)=>{
-    var playerInfo = {
-        data: res.locals.player
-    };
-    res.render(path.resolve('./public/views/player'), playerInfo);
+    res.render(path.resolve('./public/views/player'), {data: res.locals.player});
+};
+
+/*render the about page*/
+exports.renderAboutPage = (req, res, next)=>{
+    res.sender(path.resolve('./public/views/about'), null);
 };

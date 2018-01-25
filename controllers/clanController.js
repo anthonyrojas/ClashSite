@@ -15,7 +15,7 @@ exports.getClan = (req, res, next)=>{
         if(error){
             throw new Error('failed to retrieve data, API must be down');
         }
-        else if(!error && response.statusCode == 200){
+        else if(!error && (response.statusCode === 200 || response.statusCode === 304)){
             res.json(JSON.parse(body));
         }
         else{
