@@ -29,12 +29,13 @@ app.use((req, res, next)=>{
 /*visibility to client for public folder items and serving them*/
 app.use(express.static(path.join(__dirname, '/public')));
 
+/*set and enable ejs as view engine*/
+app.set('view engine', 'ejs');
+
 /*start express server*/
 app.listen(config.port, ()=>{
     console.log("Server is running on port " + config.port);
 });
-
-app.set('view engine', 'ejs');
 
 /*load routes*/
 routes(app);

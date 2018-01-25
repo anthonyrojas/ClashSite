@@ -43,6 +43,7 @@ exports.getPlayer = (req, res, next)=>{
         }
         else{
             //res.json(JSON.parse(body));
+            res.json(JSON.parse(body));
             next();
         }
     });
@@ -71,7 +72,7 @@ exports.getClanHistory = (req, res, next)=>{
 
 exports.getNormiesMembers = (req, res, next)=>{
     const options = {
-        url: config.host + '/clan/8UJRVGY9',
+        url: config.host + '/clan/' + config.normiesTag,
         headers: {
             auth: config.authKey
         }

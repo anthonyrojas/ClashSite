@@ -19,7 +19,7 @@ exports.getPlayerPage = (req, res, next)=>{
 };
 
 exports.renderIndexPage = (req, res, next)=>{
-    res.render(path.resolve('./public/views/index'), data);
+    res.render(path.resolve('./public/views/index'), null);
 };
 
 exports.renderClanPage = (req, res, next)=>{
