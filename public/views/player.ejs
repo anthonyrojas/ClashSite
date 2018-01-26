@@ -42,7 +42,7 @@
                 </ul>
             </div>
         </nav>
-        <img class="img-fluid" src="/media/header/banner.png" style="width:100%; height: auto;">
+        <img class="img-fluid" src="/media/header/banner.png">
     </header>
     <main>
         <div class="container">
@@ -67,20 +67,4 @@
     </main>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!--<script>
-    $(document).ready(function(){
-        console.time('cache');
-        $.getJSON('/api' + localStorage.getItem('playerTag')).done(function(data){
-            $('#player-name').append(data.name + '[tag: ' + data.tag + ']');
-            $('#player-info').append('<img src="' + data.clan.badge.image + '">');
-            $('#player-info').append('<p class="card-text">Trophies: ' + data.trophies);
-            $('#player-info').append('<p class="card-text">Arena Name: ' + data.arena.name);
-            $('#player-info').append('<p class="card-text">Arena: ' + data.arena.arena);
-            $('#player-info').append('<p class="card-text">Player Level: ' + data.stats.level);
-            $('#player-info').append('<p class="card-text">Wins: ' + data.games.wins);
-            $('#player-info').append('<p class="card-text">Losses: ' + data.games.losses);
-        });
-        console.timeEnd('cache');
-    });
-</script>-->
 </html>
