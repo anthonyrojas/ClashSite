@@ -91,5 +91,27 @@ main [class^="col"]{
 }
 
 #player-deck img{
-    max-height: 250px;
+    max-height: 18em;
+}
+
+@media screen and (max-width: 480px){
+    #player-deck img{
+        max-height: 8em;
+    }
+    #player-list td{
+        max-width: 1.5em;
+        font-size: 10px;
+    }
+    #player-list th{
+        max-width: 1.5em;
+        font-size: 10px;
+    }
+
+    #player-list-name td{
+        max-width: 2em;
+    }
+
+    #player-list-name th{
+        max-width: 2em;
+    }
 }

@@ -8,7 +8,7 @@ const pageController = require('./controllers/pageController');
 const clanController = require('./controllers/clanController');
 const filesController = require('./controllers/filesController');
 
-/*TODO: create authentication controls and middleware routes*/
+/*TODO: create authentication controls/routes for registration and logging in*/
 
 module.exports = (app)=>{
     var pageRoutes = express.Router();
@@ -36,11 +36,9 @@ module.exports = (app)=>{
 
     /*routes for serving static pages*/
     /*index page*/
-    //pageRoutes.get('/', pageController.getIndexPage);
     pageRoutes.get('/', clanController.getNormiesMembers, pageController.renderIndexPage);
 
     /*clan page*/
-    //pageRoutes.get('/clan',pageController.getClanPage);
     pageRoutes.get('/clan', clanController.getNormiesMembers, pageController.renderClanPage);
     
     /*about page*/
