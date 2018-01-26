@@ -90,3 +90,7 @@ main [class^="col"]{
     height: auto;
     width: fit-content;
 }
+
+#player-deck img{
+    max-height: 250px;
+}
