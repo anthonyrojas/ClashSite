@@ -2,25 +2,9 @@
 const path = require('path');
 const config = require('../config');
 
-exports.getIndexPage = (req, res, next)=>{
-    res.sendFile(path.resolve('./public/index.html'));
-};
-
-exports.getClanPage = (req, res, next)=>{
-    res.sendFile(path.resolve('./public/clan.html'));
-};
-
-exports.getAboutPage = (req, res, next)=>{
-    res.sendFile(path.resolve('./public/about.html'));
-};
-
-exports.getPlayerPage = (req, res, next)=>{
-    res.sendFile(path.resolve('./public/player.html'));
-};
-
 /*render the index page*/
 exports.renderIndexPage = (req, res, next)=>{
-    res.render(path.resolve('./public/views/index'), null);
+    res.render(path.resolve('./public/views/index'), {data: res.locals.normies});
 };
 
 /*render the clan page*/
@@ -35,5 +19,5 @@ exports.renderPlayerPage = (req, res, next)=>{
 
 /*render the about page*/
 exports.renderAboutPage = (req, res, next)=>{
-    res.sender(path.resolve('./public/views/about'), null);
+    res.render(path.resolve('./public/views/about'), null);
 };

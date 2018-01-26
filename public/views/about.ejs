@@ -3,12 +3,62 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>About</title>
+    <title>The Normies</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="/media/favicon/icon.png">
+    <link rel="shortcut icon" href="./media/favicon/icon.png">
+    <!--bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!--google fonts-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab">
+    <!--custom css-->
+    <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
-    <p>this is the about page</p>
-    <p><a href="https://github.com/anthonyrojas/ClashSite">GitHub Repo</a></p>    
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#">
+                <img src="/media/nav/navbrand.png" width="40" height="40" class="d-inline-block align-top">
+                    The Normies
+            </a>                
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="navbar-nav mr-auto mt-2 mt-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/clan">Our Clan</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/about">About <span class="sr-only">(current)</span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <img class="img-fluid" src="/media/header/banner.png" id="banner">
+    </header>
+    <main>
+        <div class="container" id="wrapper">
+            <div class="card">
+                <img class="card-img-top" src="./media/about/nodejs.png" alt="node js">
+                <div class="card-block">
+                    <p class="card-text">
+                        Node JS for backend
+                    </p>
+                </div>
+            </div>
+        </div>
+        <p>this is the about page</p>
+        <p><a href="https://github.com/anthonyrojas/ClashSite">GitHub Repo</a></p>
+        <p>this is the about page</p>
+    </main>
+    <footer>
+        <% include ./partials/footer %>
+    </footer>    
 </body>
 </html>

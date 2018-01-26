@@ -23,16 +23,16 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <a class="navbar-brand" href="#">
-                <img src="./media/nav/navbrand.png" width="40" height="40" class="d-inline-block align-top">
+                <img src="/media/nav/navbrand.png" width="40" height="40" class="d-inline-block align-top">
                     The Normies
             </a>                
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="navbar-nav mr-auto mt-2 mt-md-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="/">Home</a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/clan">Our Clan</a>
+                        <a class="nav-link" href="/clan">Our Clan<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/about">About</a>
@@ -40,50 +40,35 @@
                 </ul>
             </div>
         </nav>
-        <img class="img-fluid" src="./media/header/banner.jpg" style="width:100%; height: auto;">
+        <img class="img-fluid" src="/media/header/banner.png" style="width:100%; height: auto;">
     </header>
     <main>
-    <div class="container-fluid">
-        <h3>Compare Members</h3>
-        <div class="form-group row">
-            <div class="col-md-3 center">
-                <input class="form-control" type="text">
-            </div>
+        <div class="container" id="wrapper">
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Trophies</th>
+                        <th scope="col">Arena</th>
+                        <th scope="col">Clan Chest Crowns</th>
+                    </tr>
+                </thead>
+                <tbody id="member-list">
+                    <%data.forEach(function(member){ %>
+                    <tr>
+                        <td><a href="/player/<%= member.tag %>"><%= member.name %></a></td>
+                        <td><%= member.tropies %></td>
+                        <td><%= member.arena.arena %></td>
+                        <td><%= member.clanChestCrowns %></td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+            </table>
         </div>
-        <div class="form-group row">
-            <div class="col-md-3">
-                <input class="form-control" type="text">
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-md-3">
-                <input class="form-control" type="text">
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        <table class="table table-dark">
-            <thead>
-                <tr>
-                    <th scope="col">Name</th>
-                    <th scope="col">Trophies</th>
-                    <th scope="col">Arena</th>
-                    <th scope="col">Clan Chest Crowns</th>
-                </tr>
-            </thead>
-            <tbody id="member-list">
-                <%data.forEach(function(member){ %>
-                <tr>
-                    <td><a href="/player/<%= member.tag %>"><%= member.name %></a></td>
-                    <td><%= member.tropies %></td>
-                    <td><%= member.arena.arena %></td>
-                    <td><%= member.clanChestCrowns %></td>
-                </tr>
-                <% }); %>
-            </tbody>
-        </table>
-    </div>
     </main>
+    <footer>
+        <% include ./partials/footer %>
+    </footer>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </html>

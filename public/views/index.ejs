@@ -14,7 +14,7 @@
     <!--google fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab">
     <!--custom css-->
-    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="/styles/style.css">
 </head>
 <body>
     <header>
@@ -48,66 +48,58 @@
         </div>
     <!--</div>-->
     <main>
-    <div class="container" id="wrapper">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <h3 class="card-header">The Normies</h3>
-                    <div class="card-block">
-                        <p class="card-text">
-                            Here at "The Normies", we dedicate ourselves to spreading our dankness to the farthest reaches of the Clash Royale community.
-                            As a clan, we try to get the best participation out of all our members.
-                            We pride ourselves on our diversity as a clan that allows us to come together to roast on people of all regions.
-                        </p>
+        <div class="container" id="wrapper">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <h3 class="card-header">The Normies</h3>
+                        <div class="card-block">
+                            <p class="card-text">
+                                Here at "The Normies", we dedicate ourselves to spreading our dankness to the farthest reaches of the Clash Royale community.
+                                As a clan, we try to get the best participation out of all our members.
+                                We pride ourselves on our diversity as a clan that allows us to come together to roast on people of all regions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <h3 class="card-header">What We Do</h3>
+                        <div class="card-block">
+                            <p class="card-text">
+                                We wreck clans... mostly. We have some s*!t players as well, unfortunately. 
+                                We require that every player contribute a little to the clan chest every week.
+                                Our goal is always to try to get a 10/10 every week. 
+                                There are also tournaments hosted from time to time for our loyal clan members. The usurper "Pina" is in exile.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <h3 class="card-header">What We Do</h3>
-                    <div class="card-block">
-                        <p class="card-text">
-                            We wreck clans... mostly. We have some s*!t players as well, unfortunately. 
-                            We require that every player contribute a little to the clan chest every week.
-                            Our goal is always to try to get a 10/10 every week. 
-                            There are also tournaments hosted from time to time for our loyal clan members. The usurper "Pina" is in exile.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <br/><br/>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="jumbotron">
-                    <h1 class="display-3">Our Fearless Leader</h1>
-                    <hr class="my-2">
-                    <div id="leader-home">
-                        <% for(var i=0; i < data.length; i++) {%>
-                            <% if(data[i].role == 'leader'){ %>
-                                <h3 class="display-5"><% data[i].name %></h3>
-                                <p class="lead">Level: <% data[i].expLevel %></p>
-                                <p class="lead">Trophies: <% data[i].trophies %></p>
-                                <p class="lead">Arena: <% data[i].arena.name %></p>
-                                <% i = data.length %>
+            <br/><br/>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="jumbotron">
+                        <h1 class="display-3">Our Fearless Leader</h1>
+                        <hr class="my-2">
+                        <div id="leader-home">
+                            <% for(var i=0; i < data.length; i++) {%>
+                                <% if(data[i].role === 'leader'){ %>
+                                    <h3 class="display-5"><% data[i].name %></h3>
+                                    <p class="lead">Level: <% data[i].expLevel %></p>
+                                    <p class="lead">Trophies: <% data[i].trophies %></p>
+                                    <p class="lead">Arena: <% data[i].arena.name %></p>
+                                    <% i = data.length %>
+                                <% } %>
                             <% } %>
-                        <% } %>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     </main>
     <footer>
-        <div class="row">
-            <div class="col-md-5">
-                Join Us On<br/>
-                <a href="https://twitter.com/CR_Normies"><img src="./media/footer/twitter.png" alt="twitter"></a>
-            </div>
-            <div class="col-md-5">
-                <p>Made by Sir Doge. Pls give doge coins.<p>
-            </div>
-        </div>
+        <% include ./partials/footer %>
     </footer>
 </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -128,21 +120,4 @@
             });
         });
     </script>
-    <!--<script>
-        $(document).ready(function(){
-            $.getJSON('/api/clan/8UJRVGY9')
-            .done(function(data){
-                var memberArray = data.members;
-                $.each(memberArray, function(key, val){
-                    if(val.role === 'leader'){
-                        $('#leader-home').append('<h3 class="display-5">' + val.name);
-                        $('#leader-home').append('<p class="lead">Level: ' + val.expLevel);
-                        $('#leader-home').append('<p class="lead">Trophies: ' + val.trophies);
-                        $('#leader-home').append('<p class="lead">Arena: ' + val.arena.name);
-                        return false;
-                    }
-                });
-            });
-        });
-    </script>-->
 </html>
