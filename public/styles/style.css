@@ -98,6 +98,14 @@ main [class^="col"]{
     font-size: 5em;
 }
 
+#player-deck img{
+    max-height: 20em;
+}
+
+#player-chest-cycle img{
+    max-height: 10em;
+}
+
 @media screen and (max-width: 480px){
     #player-deck img{
         max-height: 8em;
@@ -124,5 +132,9 @@ main [class^="col"]{
     }
     #clan-title img{
         max-width: 4em;
+    }
+
+    #player-chest-cycle img{
+        max-height: 4.5em;
     }
 }

@@ -16,10 +16,13 @@ exports.getClan = (req, res, next)=>{
             throw new Error('failed to retrieve data, API must be down');
         }
         else if(!error && (response.statusCode === 200 || response.statusCode === 304)){
-            res.json(JSON.parse(body));
+            //res.json(JSON.parse(body));
+            res.locals.clan = JSON.parse(body);
+            next();
         }
         else{
-            res.json(JSON.parse(body));
+            //res.json(JSON.parse(body));
+            next();
         }
     });
 };
@@ -44,7 +47,7 @@ exports.getPlayer = (req, res, next)=>{
         }
         else{
             //res.json(JSON.parse(body));
-            res.json(JSON.parse(body));
+            //res.json(JSON.parse(body));
             next();
         }
     });
@@ -87,6 +90,9 @@ exports.getNormies = (req, res, next)=>{
             //console.log(clanData);
             //res.locals.normies = clanData.members;
             res.locals.normies = clanData;
+            next();
+        }
+        else{
             next();
         }
     });
