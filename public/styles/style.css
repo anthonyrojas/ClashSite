@@ -32,7 +32,11 @@ body{
 }
 
 .card{
-    color: white;
+    background-color: #3A3B3C;
+}
+
+.clan-info-card-img{
+    max-width: 5em;
 }
 
 .card-header{
@@ -90,10 +94,6 @@ main [class^="col"]{
     width: fit-content;
 }
 
-#player-deck img{
-    max-height: 18em;
-}
-
 @media screen and (max-width: 480px){
     #player-deck img{
         max-height: 8em;
@@ -113,5 +113,9 @@ main [class^="col"]{
 
     #player-list-name th{
         max-width: 2em;
+    }
+
+    #clan-info-cards .col-md-2{
+        
     }
 }

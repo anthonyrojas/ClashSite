@@ -36,10 +36,10 @@ module.exports = (app)=>{
 
     /*routes for serving static pages*/
     /*index page*/
-    pageRoutes.get('/', clanController.getNormiesMembers, pageController.renderIndexPage);
+    pageRoutes.get('/', clanController.getNormies, pageController.renderIndexPage);
 
     /*clan page*/
-    pageRoutes.get('/clan', clanController.getNormiesMembers, pageController.renderClanPage);
+    pageRoutes.get('/clan', clanController.getNormies, pageController.renderClanPage);
     
     /*about page*/
     pageRoutes.get('/about', pageController.renderAboutPage);

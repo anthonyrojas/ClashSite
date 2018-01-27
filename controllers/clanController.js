@@ -70,7 +70,7 @@ exports.getClanHistory = (req, res, next)=>{
     });
 };
 
-exports.getNormiesMembers = (req, res, next)=>{
+exports.getNormies = (req, res, next)=>{
     const options = {
         url: config.host + '/clan/' + config.normiesTag,
         headers: {
@@ -83,7 +83,9 @@ exports.getNormiesMembers = (req, res, next)=>{
         }
         else if(!error && (response.statusCode === 200 || response.statusCode === 304)){
             var clanData = JSON.parse(body);
-            res.locals.normies = clanData.members;
+            //console.log(clanData);
+            //res.locals.normies = clanData.members;
+            res.locals.normies = clanData;
             next();
         }
     });

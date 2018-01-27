@@ -82,15 +82,14 @@
                     <div class="card">
                         <h2 class="display-3 card-header">Our Fearless Leader</h2>
                         <div class="card-block" id="leader-home">
-                            <% for(var i=0; i < data.length; i++) {%>
-                                <% if(data[i].role === 'leader'){ %>
-                                    <h3 class="display-5"><% data[i].name %></h3>
-                                    <p class="lead">Level: <% data[i].expLevel %></p>
-                                    <p class="lead">Trophies: <% data[i].trophies %></p>
-                                    <p class="lead">Arena: <% data[i].arena.name %></p>
-                                    <% i = data.length %>
+                            <% data.members.forEach(function(member){ %>
+                                <% if(member.role == 'leader'){ %>
+                                    <h3 class="display-5"><%= member.name %></h3>
+                                    <p class="lead">Level: <%= member.expLevel %></p>
+                                    <p class="lead">Trophies: <%= member.trophies %></p>
+                                    <p class="lead">Arena: <%= member.arena.name %></p>
                                 <% } %>
-                            <% } %>
+                            <% }); %>
                         </div>
                     </div>
                 </div>

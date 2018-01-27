@@ -45,41 +45,76 @@
     <main>
         <div class="container" id="wrapper">
             <div class="card">
-                <h3 class="card-header">Compare Players</h3>
+                <h1 class="card-header display-1"><img src="<%= data.badge.image %>"> <%= data.name %></h1>
                 <div class="card-block">
-                    <form>
-                        <div class="form-row align-items-center">
-                            <div class="col-auto my-1">
-                                <label class="mr-sm-2" for="member-list-select1">Select one:</label>
-                                <select class="custom-select mr-sm-2" id="member-list-select1">
-                                    <option></option>
-                                    <% data.forEach(function(member){ %>
-                                        <option><%= member.name %> [<%= member.tag %>]</option>
-                                    <% }) %>
-                                </select>
-                            </div>
-                            <div class="col-auto my-1">
-                                    <label class="mr-sm-2" for="member-list-select1">Select one:</label>
-                                    <select class="custom-select mr-sm-2" id="member-list-select1">
-                                        <option></option>
-                                        <% data.forEach(function(member){ %>
-                                            <option><%= member.name %> [<%= member.tag %>]</option>
-                                        <% }) %>
-                                    </select>
-                            </div>
-                            <div class="col-auto my-1">
-                                    <label class="mr-sm-2" for="member-list-select1">Select one:</label>
-                                    <select class="custom-select mr-sm-2" id="member-list-select1">
-                                        <option></option>
-                                        <% data.forEach(function(member){ %>
-                                            <option><%= member.name %> [<%= member.tag %>]</option>
-                                        <% }) %>
-                                    </select>
-                            </div>
-                        </div>
-                    </form>
+                    <p class="card-text"><%= data.tag %></p>
                 </div>
             </div>
+            <br/>
+            <div class="card">
+                <div class="row" id="clan-info-cards">
+                    <div class="col-md-2">
+                        <img class="clan-info-card-img" src="/media/clan/trophies.png">
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="card-title">Trophies</h4>
+                        <p class="card-text"><%= data.score %></p>
+                    </div>
+                    <br/>
+                    <div class="col-md-2">
+                        <img class="clan-info-card-img" src="/media/clan/required_trophies.png">
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="card-title">Required Trophies</h4>
+                        <p class="card-text"><%= data.requiredScore %></p>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="card">
+                <div class="row" id="clan-info-cards">
+                    <div class="col-md-2">
+                        <img class="clan-info-card-img" src="/media/clan/members.png">
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="card-title">Members</h4>
+                        <p class="card-text"><%= data.memberCount %>/50</p>
+                    </div>
+                    <br/>
+                    <div class="col-md-2">
+                        <img class="clan-info-card-img" src="/media/clan/donations.png">
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="card-title">Donations</h4>
+                        <p class="card-text"><%= data.donations %></p>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="card">
+                <div class="row" id="clan-info-cards">
+                    <div class="col-md-2">
+                        <img class="clan-info-card-img" src="/media/clan/international.svg">
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="card-title">Location</h4>
+                        <p class="card-text"><%= data.location.name %></p>
+                    </div>
+                    <br/>
+                    <div class="col-md-2">
+                        <img class="clan-info-card-img" src="/media/clan/clan_chest.png">
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="card-title">Clan Chest</h4>
+                        <%if(data.clanChest.status === 'active'){ %>
+                            <p class="card-text"><%= data.clanChest.crowns %><br/><%= data.clanChest.level%>/<%= data.clanChest.maxLevel %></p>
+                        <% } else { %>
+                            <p class="card-text">Inactive</p>
+                        <% }%>
+                    </div>
+                </div>
+            </div>
+            <br/><br/>
             <table class="table table-dark" id="player-list">
                 <thead>
                     <tr>
@@ -91,7 +126,7 @@
                     </tr>
                 </thead>
                 <tbody id="member-list">
-                    <%data.forEach(function(member){ %>
+                    <%data.members.forEach(function(member){ %>
                     <tr>
                         <td id="player-list-name"><a href="/player/<%= member.tag %>"><%= member.name %></a></td>
                         <td><%= member.expLevel %></td>
