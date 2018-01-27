@@ -44,6 +44,42 @@
     </header>
     <main>
         <div class="container" id="wrapper">
+            <div class="card">
+                <h3 class="card-header">Compare Players</h3>
+                <div class="card-block">
+                    <form>
+                        <div class="form-row align-items-center">
+                            <div class="col-auto my-1">
+                                <label class="mr-sm-2" for="member-list-select1">Select one:</label>
+                                <select class="custom-select mr-sm-2" id="member-list-select1">
+                                    <option></option>
+                                    <% data.forEach(function(member){ %>
+                                        <option><%= member.name %> [<%= member.tag %>]</option>
+                                    <% }) %>
+                                </select>
+                            </div>
+                            <div class="col-auto my-1">
+                                    <label class="mr-sm-2" for="member-list-select1">Select one:</label>
+                                    <select class="custom-select mr-sm-2" id="member-list-select1">
+                                        <option></option>
+                                        <% data.forEach(function(member){ %>
+                                            <option><%= member.name %> [<%= member.tag %>]</option>
+                                        <% }) %>
+                                    </select>
+                            </div>
+                            <div class="col-auto my-1">
+                                    <label class="mr-sm-2" for="member-list-select1">Select one:</label>
+                                    <select class="custom-select mr-sm-2" id="member-list-select1">
+                                        <option></option>
+                                        <% data.forEach(function(member){ %>
+                                            <option><%= member.name %> [<%= member.tag %>]</option>
+                                        <% }) %>
+                                    </select>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
             <table class="table table-dark" id="player-list">
                 <thead>
                     <tr>

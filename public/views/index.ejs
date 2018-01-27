@@ -79,10 +79,9 @@
             <br/><br/>
             <div class="row">
                 <div class="col-md-12">
-                    <div class="jumbotron">
-                        <h1 class="display-3">Our Fearless Leader</h1>
-                        <hr class="my-2">
-                        <div id="leader-home">
+                    <div class="card">
+                        <h2 class="display-3 card-header">Our Fearless Leader</h2>
+                        <div class="card-block" id="leader-home">
                             <% for(var i=0; i < data.length; i++) {%>
                                 <% if(data[i].role === 'leader'){ %>
                                     <h3 class="display-5"><% data[i].name %></h3>
