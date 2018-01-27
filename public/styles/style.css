@@ -94,6 +94,10 @@ main [class^="col"]{
     width: fit-content;
 }
 
+#clan-title h1{
+    font-size: 5em;
+}
+
 @media screen and (max-width: 480px){
     #player-deck img{
         max-height: 8em;
@@ -115,7 +119,10 @@ main [class^="col"]{
         max-width: 2em;
     }
 
-    #clan-info-cards .col-md-2{
-        
+    #clan-title h1{
+        font-size: 2em;
+    }
+    #clan-title img{
+        max-width: 4em;
     }
 }

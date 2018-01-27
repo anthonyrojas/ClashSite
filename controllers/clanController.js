@@ -27,7 +27,7 @@ exports.getClan = (req, res, next)=>{
 exports.getPlayer = (req, res, next)=>{
     var playerTag = req.params.tag;
     var options = {
-        url: config.host + '/player/' + playerTag + '?exclude=battles,achievements,cards,chestCycle',
+        url: config.host + '/player/' + playerTag + '?exclude=battles,achievements,cards',
         headers: {
             auth: config.authKey
         }
@@ -38,6 +38,7 @@ exports.getPlayer = (req, res, next)=>{
         }
         else if(!error && (response.statusCode === 200 || response.statusCode === 304)){
             //res.json(JSON.parse(body));
+            //console.log(JSON.parse(body));
             res.locals.player = JSON.parse(body);
             next();
         }

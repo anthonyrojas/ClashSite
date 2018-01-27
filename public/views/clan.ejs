@@ -44,15 +44,24 @@
     </header>
     <main>
         <div class="container" id="wrapper">
-            <div class="card">
-                <h1 class="card-header display-1"><img src="<%= data.badge.image %>"> <%= data.name %></h1>
+            <div class="card" id="clan-title">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <img src="<%= data.badge.image %>">
+                        </div>
+                        <div class="col-sm-10">
+                            <h1> <%= data.name %></h1>
+                        </div>
+                    </div>
+                </div>
                 <div class="card-block">
                     <p class="card-text"><%= data.tag %></p>
                 </div>
             </div>
             <br/>
             <div class="card">
-                <div class="row" id="clan-info-cards">
+                <div class="row">
                     <div class="col-md-2">
                         <img class="clan-info-card-img" src="/media/clan/trophies.png">
                     </div>
@@ -72,7 +81,7 @@
             </div>
             <br/>
             <div class="card">
-                <div class="row" id="clan-info-cards">
+                <div class="row">
                     <div class="col-md-2">
                         <img class="clan-info-card-img" src="/media/clan/members.png">
                     </div>
@@ -92,7 +101,7 @@
             </div>
             <br/>
             <div class="card">
-                <div class="row" id="clan-info-cards">
+                <div class="row">
                     <div class="col-md-2">
                         <img class="clan-info-card-img" src="/media/clan/international.svg">
                     </div>
@@ -109,7 +118,7 @@
                         <%if(data.clanChest.status === 'active'){ %>
                             <p class="card-text"><%= data.clanChest.crowns %><br/><%= data.clanChest.level%>/<%= data.clanChest.maxLevel %></p>
                         <% } else { %>
-                            <p class="card-text">Inactive</p>
+                            <p class="card-text">Inactive<br/><%= data.clanChest.level%>/<%= data.clanChest.maxLevel %></p>
                         <% }%>
                     </div>
                 </div>
