@@ -118,7 +118,7 @@
                         <%if(data.clanChest.status === 'active'){ %>
                             <p class="card-text"><%= data.clanChest.crowns %><br/><%= data.clanChest.level%>/<%= data.clanChest.maxLevel %></p>
                         <% } else { %>
-                            <p class="card-text">Inactive<br/><%= data.clanChest.level%>/<%= data.clanChest.maxLevel %></p>
+                            <p class="card-text"><%= data.clanChest.crowns %><br/><%= data.clanChest.level%>/<%= data.clanChest.maxLevel %></p>
                         <% }%>
                     </div>
                 </div>

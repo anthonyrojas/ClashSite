@@ -44,18 +44,70 @@
     </header>
     <main>
         <div class="container" id="wrapper">
-            <div class="card">
-                <img class="card-img-top" src="./media/about/nodejs.png" alt="node js">
-                <div class="card-block">
-                    <p class="card-text">
-                        Node JS for backend
-                    </p>
+            <h4>Site Powered By: </h4>
+            <br/>
+            <div class="card-deck mx-auto" id="about-deck">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Server Side Language</h4>
+                    </div>
+                    <img class="card-img-top" src="../media/about/nodejs.png">
+                    <div class="card-block">
+                        <h4 class="card-title">Node JS</h4>
+                        <p class="card-text">
+                            NodeJS is a server-side language that uses an event-driven, non-blocking I/O model that makes it lightweight and efficient.
+                        </p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Framework</h4>
+                    </div>
+                    <img class="card-img-top" src="../media/about/expressjs.png">
+                    <div class="card-block">
+                        <h4 class="card-title">Express JS</h4>
+                        <p class="card-text">A web application framework for NodeJS intended for simplifying the building of web applications and API's.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Database</h4>
+                    </div>
+                    <img class="card-img-top" src="../media/about/mongo-db.png">
+                    <div class="card-block">
+                        <h4 class="card-title">MongoDB</h4>
+                        <p class="card-text">
+                            A no-SQL database with a format very similair to JSON, which allows for seamless integration with JavaScript.
+                        </p>
+                    </div>
+                </div>
+                <!--<div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Package Manager</h4>
+                    </div>
+                    <img class="card-img-top" src="../media/about/npm.jpg">
+                    <div class="card-block">
+                        <h4 class="card-title">NPM</h4>
+                        <p class="card-text">
+                            The default package manager for JavaScript. It is responsible for the distribution of packages and dependencies of JavaScript applications.
+                        </p>
+                    </div>
+                </div>-->
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">Server</h4>
+                    </div>
+                    <img class="card-img-top" src="../media/about/nginx.png">
+                    <div class="card-block">
+                        <h4 class="card-title">NginX</h4>
+                        <p class="card-text">
+                            A web server that can also be used as a reverse proxy, load balancer and HTTP cache.
+                        </p>
+                    </div>
                 </div>
             </div>
+            <br/>
         </div>
-        <p>this is the about page</p>
-        <p><a href="https://github.com/anthonyrojas/ClashSite">GitHub Repo</a></p>
-        <p>this is the about page</p>
     </main>
     <footer>
         <% include ./partials/footer %>

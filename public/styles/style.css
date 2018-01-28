@@ -65,7 +65,8 @@ footer{
     color: antiquewhite;
     padding-bottom: 2.5em;
     padding-top: 1em;
-    padding-left: 2em;
+    /*padding-left: 2em;*/
+    text-align: center;
     overflow: hidden;
 }
 
