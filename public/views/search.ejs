@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Clan</title>
+    <title>Search</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/media/favicon/icon.png">
     <!--bootstrap-->
@@ -11,6 +11,8 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!--full jquery-->
+    <script src="http://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <!--google fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab">
     <!--custom css-->
@@ -49,20 +51,22 @@
     </header>
     <main>
         <div class="container" id="wrapper">
+            <div class="row" id="error-space">
+            </div>
             <div class="card">
                 <div class="card-header">
                     <h1 class="display-3">Search</h1>
                 </div>
                 <div class="card-block">
                     <h4>Search for a clan or player by entering their tag</h4>
-                    <form action="#" id="searchForm">
+                    <form id="searchForm" action="#">
                         <div class="row">
                             <div class="col-sm-2"></div>
                             <div class="col-sm-8">
                                 <input class="form-control" id="tagSearch" type="text" placeholder="EX: 8UJRVGY9">
                             </div>
                             <div class="col-sm-2">
-                                <button class="btn btn-primary" type="submit" value="Submit" onclick="submitSearch()">Search</button>
+                                <button class="btn btn-primary" type="submit" value="Submit">Search</button>
                             </div>
                         </div>
                         <div class="row">

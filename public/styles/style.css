@@ -121,6 +121,11 @@ main [class^="col"]{
     color: #95B5FF;
 }
 
+/*#error-space{
+    display: none;
+}*/
+
+
 @media screen and (max-width: 480px){
     #player-deck img{
         max-height: 8em;

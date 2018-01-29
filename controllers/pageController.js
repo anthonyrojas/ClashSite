@@ -37,6 +37,7 @@ exports.renderAboutPage = (req, res, next)=>{
     res.render(path.resolve('./public/views/about'), null);
 };
 
+/*render the search page*/
 exports.renderSearchPage = (req, res, next)=>{
     res.render(path.resolve('./public/views/search'), null);
 }
