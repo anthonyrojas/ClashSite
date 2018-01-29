@@ -4,7 +4,22 @@ const config = require('../config');
 
 /*render the index page*/
 exports.renderIndexPage = (req, res, next)=>{
-    res.render(path.resolve('./public/views/index'), {data: res.locals.clan});
+    var leaderMember;
+    const members = res.locals.clan.members;
+    members.forEach(member => {
+        if(member.role === 'leader'){
+            leaderMember = member;
+        }    
+    });
+    var clanMax = 0;
+    var topEarner;
+    members.forEach(member => {
+        if(member.clanChestCrowns > clanMax){
+            clanMax = member.clanChestCrowns;
+            topEarner = member;
+        }
+    });
+    res.render(path.resolve('./public/views/index'), {leader: leaderMember, top: topEarner });
 };
 
 /*render the clan page*/
@@ -21,3 +36,7 @@ exports.renderPlayerPage = (req, res, next)=>{
 exports.renderAboutPage = (req, res, next)=>{
     res.render(path.resolve('./public/views/about'), null);
 };
+
+exports.renderSearchPage = (req, res, next)=>{
+    res.render(path.resolve('./public/views/search'), null);
+}

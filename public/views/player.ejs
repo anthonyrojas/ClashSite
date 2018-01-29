@@ -58,8 +58,8 @@
                     </div>
                 </div>
                 <div class="card-block">
-                    <p class="card-text">Tag: <%= data.tag %></p>
-                    <p class="card-text"><%= data.clan.role%> at <%= data.clan.name%></p>
+                    <p class="lead">Tag: <%= data.tag %></p>
+                    <p class="lead" id="player-clantag"><%= data.clan.role%> at <a href="/clan/<%=data.clan.tag%>"><%= data.clan.name%></a></p>
                 </div>
             </div>
             <br/>

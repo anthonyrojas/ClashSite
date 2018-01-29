@@ -82,18 +82,31 @@
                     <div class="card">
                         <h2 class="display-3 card-header">Our Fearless Leader</h2>
                         <div class="card-block" id="leader-home">
-                            <% data.members.forEach(function(member){ %>
-                                <% if(member.role == 'leader'){ %>
-                                    <h3 class="display-5"><%= member.name %></h3>
-                                    <p class="lead">Level: <%= member.expLevel %></p>
-                                    <p class="lead">Trophies: <%= member.trophies %></p>
-                                    <p class="lead">Arena: <%= member.arena.name %></p>
-                                <% } %>
-                            <% }); %>
+                            <h3 class="display-5"><a href="/player/<%=leader.tag%>"><%= leader.name %></a></h3>
+                            <p class="lead">Level: <%= leader.expLevel %></p>
+                            <p class="lead">Trophies: <%= leader.trophies %></p>
+                            <p class="lead">Arena: <%= leader.arena.name %></p>
                         </div>
                     </div>
                 </div>
             </div>
+            <br/><br/>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <h2 class="display-3 card-header">All-Star Clan Chest Earner</h2>
+                        <div class="card-block" id="top-clan-earner">
+                            <h3 class="display-5"><a href="/player/<%=top.tag%>"><%= top.name %></a></h3>
+                            <p class="lead">Level: <%= top.expLevel %></p>
+                            <p class="lead">Clan Chest Crowns: <%= top.clanChestCrowns %></p>
+                            <p class="lead">Trophies: <%= leader.trophies %></p>
+                            <p class="lead">Arena: <%= leader.arena.name %></p>
+                            <p class="card-text">Special thanks given to this player for their hard work and contribution to the clan. The rest of our players better step up.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/><br/>
         </div>
     </main>
     <footer>

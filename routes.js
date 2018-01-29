@@ -48,6 +48,9 @@ module.exports = (app)=>{
 
     /*player info page*/
     pageRoutes.get('/player/:tag', clanController.getPlayer, pageController.renderPlayerPage);
+
+    /*search page*/
+    pageRoutes.get('/search', pageController.renderSearchPage);
     
     /*page router*/
     app.use('/', pageRoutes);

@@ -107,6 +107,20 @@ main [class^="col"]{
     max-height: 10em;
 }
 
+#leader-home a{
+    text-decoration: none;
+}
+
+#top-clan-earner a{
+    text-decoration: none;
+}
+
+#player-clantag a{
+    text-decoration: none;
+    font-weight: bold;
+    color: #95B5FF;
+}
+
 @media screen and (max-width: 480px){
     #player-deck img{
         max-height: 8em;
