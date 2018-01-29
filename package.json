@@ -8,13 +8,13 @@
     "start": "node app"
   },
   "dependencies": {
-    "axios":"*",
+    "axios": "*",
     "bcrypt-nodejs": "*",
     "body-parser": "*",
     "express": "*",
     "ejs": "*",
     "fs": "*",
-    "jwt": "*",
+    "jsonwebtoken": "*",
     "mongodb": "*",
     "mongoose": "*",
     "morgan": "*",

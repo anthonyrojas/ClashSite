@@ -1,6 +1,4 @@
 "use strict"
-
-const request = require('request');
 const axios = require('axios');
 const config = require('../config');
 
@@ -12,18 +10,29 @@ const configuration = {
 
 exports.getClan = (req, res, next)=>{
     var clanTag = req.params.tag;
-
     axios.get(config.host + '/clan/' + clanTag, configuration)
     .then(response => {
         res.locals.clan = response.data;
         next();
     })
     .catch(error=>{
-        console.log(error.response.status);
-        console.log(error.response.statusText);
-        console.log(error.response.body);
-        next();
-        /*TODO: error handling*/
+        const errStatus = error.response.status;
+        const errText = error.response.statusText;
+        if(errStatus === 404 || errStatus === 400){
+            var err = new Error('Clan information not found. Invalid tag.');
+            err.status = 500;
+            next(err);
+        }
+        else if(errStatus === 503){
+            var err = new Error('The service for Clash Royale information is down. Unfortunately, most of this website is dependent on cr-api.com working properly. The information on this site will be back to normal as soon as cr-api.com is working again. Many apologies -- Sir Doge');
+            err.status = 500;
+            next(err);
+        }
+        else{
+            var err = new Error(errText);
+            err.status = 500;
+            next(err);
+        }
     });
 };
 
@@ -35,11 +44,23 @@ exports.getPlayer = (req, res, next)=>{
         next();
     })
     .catch(error=>{
-        console.log(error.response.status);
-        console.log(error.response.statusText);
-        console.log(error.response.body);
-        next();
-        /*TODO: better error handling*/
+        const errStatus = error.response.status;
+        const errText = error.response.statusText;
+        if(errStatus === 404 || errStatus === 400){
+            var err = new Error('Player information not found. Invalid tag.');
+            err.status = 500;
+            next(err);
+        }
+        else if(errStatus === 503){
+            var err = new Error('The service for Clash Royale information is down. Unfortunately, most of this website is dependent on cr-api.com working properly. The information on this site will be back to normal as soon as cr-api.com is working again. Many apologies -- Sir Doge');
+            err.status = 500;
+            next(err);
+        }
+        else{
+            var err = new Error(errText);
+            err.status = 500;
+            next(err);
+        }
     });
 };
 
@@ -51,25 +72,49 @@ exports.getClanHistory = (req, res, next)=>{
         next();
     })
     .catch(error=>{
-        console.log(error.response.status);
-        console.log(error.response.statusText);
-        console.log(error.response.body);
-        next();
+        const errStatus = error.response.status;
+        const errText = error.response.statusText;
+        if(errStatus === 400 || errStatus === 404){
+            var err = new Error('Clan information not found. Invalid tag.');
+            err.status = 500;
+            next(err);
+        }
+        else if(errStatus === 503){
+            var err = new Error('The service for Clash Royale information is down. Unfortunately, most of this website is dependent on cr-api.com working properly. The information on this site will be back to normal as soon as cr-api.com is working again. Many apologies -- Sir Doge');
+            err.status = 500;
+            next(err);
+        }
+        else{
+            var err = new Error(errText);
+            err.status = 500;
+            next(err);
+        }
     });
 };
 
 exports.getNormies = (req, res, next)=>{
     axios.get(config.host + '/clan/' + config.normiesTag, configuration)
     .then(response=>{
-        res.locals.normies = response.data;
+        res.locals.clan = response.data;
         next();
     })
     .catch(error=>{
-        console.log(error.response.status);
-        console.log(error.response.statusText);
-        console.log(error.response.body);
-        res.send(error.response.body);
-        next();
-        /*TODO: better error handling*/
+        const errStatus = error.response.status;
+        const errText = error.response.statusText;
+        if(errStatus === 400 || errStatus === 404){
+            var err = new Error('Clan information not found. Invalid tag.');
+            err.status = 500;
+            next(err);
+        }
+        else if(errStatus === 503){
+            var err = new Error('The service for Clash Royale information is down. Unfortunately, most of this website is dependent on cr-api.com working properly. The information on this site will be back to normal as soon as cr-api.com is working again. Many apologies -- Sir Doge');
+            err.status = 500;
+            next(err);
+        }
+        else{
+            var err = new Error(errText);
+            err.status = 500;
+            next(err);
+        }
     });
 };

@@ -18,15 +18,15 @@ module.exports = (app)=>{
 
     /*routes for serving data from cr-api.com*/
     /*GET player*/
-    apiRoutes.get('/player/:tag', clanController.getPlayer);
+    //apiRoutes.get('/player/:tag', clanController.getPlayer);
 
     /*GET clan*/
-    apiRoutes.get('/clan/:tag', clanController.getClan);
+    //apiRoutes.get('/clan/:tag', clanController.getClan);
 
     /*GET clan history*/
-    apiRoutes.get('/clan/history/:tag', clanController.getClanHistory);
+    //apiRoutes.get('/clan/history/:tag', clanController.getClanHistory);
 
-    app.use('/api', apiRoutes);
+    //app.use('/api', apiRoutes);
 
     /*routes for serving files (pictures, etc.)*/
     /*GET pictures in media/home folder*/
@@ -38,15 +38,18 @@ module.exports = (app)=>{
     /*index page*/
     pageRoutes.get('/', clanController.getNormies, pageController.renderIndexPage);
 
-    /*clan page*/
+    /*normies clan page*/
     pageRoutes.get('/clan', clanController.getNormies, pageController.renderClanPage);
     
+    /*clan page*/
+    pageRoutes.get('/clan/:tag', clanController.getClan, pageController.renderClanPage);
+
     /*about page*/
     pageRoutes.get('/about', pageController.renderAboutPage);
 
     /*player info page*/
     pageRoutes.get('/player/:tag', clanController.getPlayer, pageController.renderPlayerPage);
-
+    
     /*page router*/
     app.use('/', pageRoutes);
 }

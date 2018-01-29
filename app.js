@@ -39,3 +39,15 @@ app.listen(config.port, ()=>{
 
 /*load routes*/
 routes(app);
+
+/*error middleware*/
+app.get('*', function(req, res, next) {
+    var err = new Error('Invalid path. Page not found.');
+    err.status = 404;
+    next(err);
+});
+
+app.use((err, req, res, next)=>{
+    res.status(err.status);
+    res.render(path.resolve('./public/views/error'), {status: err.status, message: err.message});
+});
