@@ -1,28 +1,34 @@
+'use strict';
+
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 const Schema = mongoose.Schema;
-const bcrypt = require('bcrypt-nodejs');
 
 const UserSchema = new Schema({
-    playerTag: {
+    playerTag:{
         type: String,
-        required: true,
-        unique: true
-    },
-    username: {
-        type: String,
+        trim: true,
         required: true
     },
     email: {
         type: String,
-        required: true,
         unique: true,
+        lowercase: true,
+        trim: true,
+        required: true
     },
     password: {
         type: String,
         required: true
+    },
+    created: {
+        type: Date,
+        default: Date.now
     }
-},{
-    timestamps: true
 });
 
-module.exports = mongoose.model("User", UserSchema);
+UserSchema.methods.comparePassword = (pword)=>{
+    return bcrypt.compareSync(pword, this.password);
+};
+
+mongoose.model('User', UserSchema);

@@ -9,8 +9,10 @@
   },
   "dependencies": {
     "axios": "*",
+    "bcrypt": "*",
     "bcrypt-nodejs": "*",
     "body-parser": "*",
+    "crypto": "*",
     "express": "*",
     "ejs": "*",
     "fs": "*",
