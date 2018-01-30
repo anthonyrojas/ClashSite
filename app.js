@@ -3,9 +3,11 @@ const app = express();
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const multer = require('multer');
+const mongoose = require('mongoose');
 const upload = multer();
 const routes = require('./routes');
 const path = require('path');
+const socketEvents = require('./socketEvents');
 
 const pageRouter = express.Router();
 
@@ -33,8 +35,17 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.set('view engine', 'ejs');
 
 /*start express server*/
-app.listen(config.port, ()=>{
+const server = app.listen(config.port, ()=>{
     console.log("Server is running on port " + config.port);
+});
+
+/*connect socket io to server*/
+const io = require('socket.io').listen(server);
+socketEvents(io);
+
+/*connect to the database*/
+mongoose.connect(config.database, {useMongoClient: true}, ()=>{
+    console.log('connected to mongo');
 });
 
 /*load routes*/
