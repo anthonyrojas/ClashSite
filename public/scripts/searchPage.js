@@ -8,10 +8,20 @@ $(document).ready(function(){
         }
         else{
             if(document.getElementById("clanRadio").checked){
+                var url = window.location.href;
+                var a = url.indexOf("?");
+                var b =  url.substring(a);
+                var c = url.replace(b,"");
+                url = c;
                 document.getElementById("searchForm").setAttribute('action', '/clan/' + tagValue.value);
                 document.getElementById("searchForm").submit();
             }
             else if(document.getElementById("playerRadio").checked){
+                var url = window.location.href;
+                var a = url.indexOf("?");
+                var b =  url.substring(a);
+                var c = url.replace(b,"");
+                url = c;
                 document.getElementById("searchForm").setAttribute('action', '/player/' + tagValue.value);
                 document.getElementById("searchForm").submit();
             }

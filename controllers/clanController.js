@@ -12,6 +12,11 @@ exports.getClan = (req, res, next)=>{
     var clanTag = req.params.tag;
     axios.get(config.host + '/clan/' + clanTag, configuration)
     .then(response => {
+        if(response.data.name === null || response.data.name === ""){
+            var err = new Error('Player information not found. Invalid tag.');
+            err.status = 500;
+            next(err);
+        }
         res.locals.clan = response.data;
         next();
     })
@@ -40,6 +45,11 @@ exports.getPlayer = (req, res, next)=>{
     var playerTag = req.params.tag;
     axios.get(config.host + '/player/' + playerTag, configuration)
     .then(response=>{
+        if(response.data.name === null || response.data.name === ""){
+            var err = new Error('Player information not found. Invalid tag.');
+            err.status = 500;
+            next(err);
+        }
         res.locals.player = response.data;
         next();
     })
@@ -75,7 +85,7 @@ exports.getClanHistory = (req, res, next)=>{
         const errStatus = error.response.status;
         const errText = error.response.statusText;
         if(errStatus === 400 || errStatus === 404){
-            var err = new Error('Clan information not found. Invalid tag.');
+            var err = new Error('Clan information not found. Invalid tag or the history of this clan is not being tracked.');
             err.status = 500;
             next(err);
         }
