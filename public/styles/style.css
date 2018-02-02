@@ -121,10 +121,21 @@ main [class^="col"]{
     color: #95B5FF;
 }
 
-/*#error-space{
-    display: none;
-}*/
+#player-tabs{
+    border-bottom: none;
+}
 
+#player-tabs .active{
+    background: black;
+}
+
+#player-tabs a{
+    color: white;
+}
+
+.battle-history-deck{
+    max-height: 5em;
+}
 
 @media screen and (max-width: 480px){
     #player-deck img{

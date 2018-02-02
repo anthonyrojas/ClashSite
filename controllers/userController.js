@@ -27,7 +27,7 @@ exports.signIn = (req, res, next)=>{
     }, (err, user)=>{
         if(err) throw err;
         if(!user || !user.comparePassword(req.body.password)){
-            return resolve.status(401).json({message: 'Authentication failed. Invalid username or password'});
+            return res.status(401).json({message: 'Authentication failed. Invalid username or password'});
         }
         return res.json({token: jwt.sign({email: user.email, playerTag: user.playerTag, _id: user._id}, config.secret)});
     });

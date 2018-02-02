@@ -60,202 +60,229 @@
                 </div>
                 <div class="card-block">
                     <p class="lead">Tag: <%= data.tag %></p>
-                    <p class="lead" id="player-clantag"><%= data.clan.role%> at <a href="/clan/<%=data.clan.tag%>"><%= data.clan.name%></a></p>
+                    <p class="lead" id="player-clantag">
+                        <% if(data.clan.role === "leader"){ %>
+                            Leader
+                        <% }else if(data.clan.role === "coLeader"){ %>
+                            Co Leader
+                        <% }else if(data.clan.role === "elder"){ %>
+                            Elder
+                        <% }else if(data.clan.role === "member"){ %>
+                            Member
+                        <% } %>
+                        at 
+                        <a href="/clan/<%=data.clan.tag%>"><%= data.clan.name%></a>
+                    </p>
+                    <ul class="nav nav-tabs justify-content-center" id="player-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="stats-tab" data-toggle="tab" href="#stats" role="tab" aria-controls="stats" aria-selected="true">Stats</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="battle-history-tab" data-toggle="tab" href="#battle-history" role="tab" aria-controls="battle-history" aria-selected="false">Battle History</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <br/>
-            <div class="card">
-                <div class="row">
-                    <div class="col-md-2">
-                        <img class="clan-info-card-img" src="/media/clan/player_level.png">
-                    </div>
-                    <div class="col-md-4">
-                        <h4 class="card-title">Level</h4>
-                        <p class="card-text"><%= data.stats.level %></p>
+            <div class="tab-content" id="player-tabs-content">
+                <div class="tab-pane fade show active" id="stats" role="tabpanel" aria-labelledby="stats-tab">
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img class="clan-info-card-img" src="/media/clan/player_level.png">
+                            </div>
+                            <div class="col-md-4">
+                                <h4 class="card-title">Level</h4>
+                                <p class="card-text"><%= data.stats.level %></p>
+                            </div>
+                            <br/>
+                            <div class="col-md-2">
+                                <img class="clan-info-card-img" src="/media/clan/trophies.png">
+                            </div>
+                            <div class="col-md-4">
+                                <h4 class="card-title">Trophies</h4>
+                                <p class="card-text"><%= data.trophies %></p>
+                            </div>
+                        </div>
                     </div>
                     <br/>
-                    <div class="col-md-2">
-                        <img class="clan-info-card-img" src="/media/clan/trophies.png">
-                    </div>
-                    <div class="col-md-4">
-                        <h4 class="card-title">Trophies</h4>
-                        <p class="card-text"><%= data.trophies %></p>
-                    </div>
-                </div>
-            </div>
-            <br/>
-            <div class="card">
-                <div class="row">
-                    <div class="col-md-2">
-                        <img class="clan-info-card-img" src="/media/arenas/<%=data.arena.arenaID%>.png">
-                    </div>
-                    <div class="col-md-4">
-                        <h4 class="card-title">Arena</h4>
-                        <p class="card-text"><%= data.arena.name %></p>
-                    </div>
-                    <br/>
-                    <div class="col-md-2">
-                        <img class="clan-info-card-img" src="/media/clan/trophies.png">
-                    </div>
-                    <div class="col-md-4">
-                        <h4 class="card-title">Max. Trophies</h4>
-                        <p class="card-text"><%= data.stats.maxTrophies %></p>
-                    </div>
-                </div>
-            </div>
-            <br/>
-            <div class="card">
-                <div class="row">
-                    <div class="col-md-2">
-                        <img class="clan-info-card-img" src="/media/clan/donations.png">
-                    </div>
-                    <div class="col-md-4">
-                        <h4 class="card-title">Total Donations</h4>
-                        <p class="card-text"><%= data.stats.totalDonations %></p>
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img class="clan-info-card-img" src="/media/arenas/<%=data.arena.arenaID%>.png">
+                            </div>
+                            <div class="col-md-4">
+                                <h4 class="card-title">Arena</h4>
+                                <p class="card-text"><%= data.arena.name %></p>
+                            </div>
+                            <br/>
+                            <div class="col-md-2">
+                                <img class="clan-info-card-img" src="/media/clan/trophies.png">
+                            </div>
+                            <div class="col-md-4">
+                                <h4 class="card-title">Max. Trophies</h4>
+                                <p class="card-text"><%= data.stats.maxTrophies %></p>
+                            </div>
+                        </div>
                     </div>
                     <br/>
-                    <div class="col-md-2">
-                        <img class="clan-info-card-img" src="/media/clan/donations.png">
-                    </div>
-                    <div class="col-md-4">
-                        <h4 class="card-title">Cards Found</h4>
-                        <p class="card-text"><%= data.stats.cardsFound %></p>
-                    </div>
-                </div>
-            </div>
-            <br/>
-            <div class="card">
-                <div class="row">
-                    <div class="col-md-2">
-                        <img class="clan-info-card-img" src="/media/clan/donations.png">
-                    </div>
-                    <div class="col-md-4">
-                        <h4 class="card-title">Donations</h4>
-                        <p class="card-text"><%= data.clan.donations %></p>
-                    </div>
-                    <br/>
-                    <div class="col-md-2">
-                        <img class="clan-info-card-img" src="/media/clan/donations.png">
-                    </div>
-                    <div class="col-md-4">
-                        <h4 class="card-title">Received</h4>
-                        <p class="card-text"><%= data.clan.donationsReceived %></p>
-                    </div>
-                </div>
-            </div>
-            <br/>
-            <div class="card">
-                <div class="row">
-                    <div class="col-md-2">
-                        <img class="clan-info-card-img" src="/media/clan/battle.png">
-                    </div>
-                    <div class="col-md-4">
-                        <h4 class="card-title">Total Games</h4>
-                        <p class="card-text"><%= data.games.total %></p>
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img class="clan-info-card-img" src="/media/clan/donations.png">
+                            </div>
+                            <div class="col-md-4">
+                                <h4 class="card-title">Total Donations</h4>
+                                <p class="card-text"><%= data.stats.totalDonations %></p>
+                            </div>
+                            <br/>
+                            <div class="col-md-2">
+                                <img class="clan-info-card-img" src="/media/clan/donations.png">
+                            </div>
+                            <div class="col-md-4">
+                                <h4 class="card-title">Cards Found</h4>
+                                <p class="card-text"><%= data.stats.cardsFound %></p>
+                            </div>
+                        </div>
                     </div>
                     <br/>
-                    <div class="col-md-2">
-                        <img class="clan-info-card-img" src="/media/clan/crowns.png">
-                    </div>
-                    <div class="col-md-4">
-                        <h4 class="card-title">3 Crown Wins</h4>
-                        <p class="card-text"><%= data.stats.threeCrownWins %></p>
-                    </div>
-                </div>
-            </div>
-            <br/>
-            <div class="card">
-                <div class="row">
-                    <div class="col-md-2">
-                        <img class="clan-info-card-img" src="/media/clan/battle.png">
-                    </div>
-                    <div class="col-md-4">
-                        <h4 class="card-title">Wins</h4>
-                        <p class="card-text"><%= data.games.wins %></p>
-                    </div>
-                    <br/>
-                    <div class="col-md-2">
-                        <img class="clan-info-card-img" src="/media/clan/battle.png">
-                    </div>
-                    <div class="col-md-4">
-                        <h4 class="card-title">Losses</h4>
-                        <p class="card-text"><%= data.games.losses %></p>
-                    </div>
-                </div>
-            </div>
-            <br/>
-            <div class="card">
-                <div class="row">
-                    <div class="col-md-2">
-                        <img class="clan-info-card-img" src="/media/clan/tournament.png">
-                    </div>
-                    <div class="col-md-4">
-                        <h4 class="card-title">Tournament Games</h4>
-                        <p class="card-text"><%= data.games.tournamentGames %></p>
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img class="clan-info-card-img" src="/media/clan/donations.png">
+                            </div>
+                            <div class="col-md-4">
+                                <h4 class="card-title">Donations</h4>
+                                <p class="card-text"><%= data.clan.donations %></p>
+                            </div>
+                            <br/>
+                            <div class="col-md-2">
+                                <img class="clan-info-card-img" src="/media/clan/donations.png">
+                            </div>
+                            <div class="col-md-4">
+                                <h4 class="card-title">Received</h4>
+                                <p class="card-text"><%= data.clan.donationsReceived %></p>
+                            </div>
+                        </div>
                     </div>
                     <br/>
-                    <div class="col-md-2">
-                        <img class="clan-info-card-img" src="/media/clan/donations.png">
-                    </div>
-                    <div class="col-md-4">
-                        <h4 class="card-title">Tournament Cards Won</h4>
-                        <p class="card-text"><%= data.stats.tournamentCardsWon %></p>
-                    </div>
-                </div>
-            </div>
-            <br/>
-            <div class="card">
-                <div class="row">
-                    <div class="col-md-2">
-                        <img class="clan-info-card-img" src="/media/clan/tournament.png">
-                    </div>
-                    <div class="col-md-4">
-                        <h4 class="card-title">Challenge Max Wins</h4>
-                        <p class="card-text"><%= data.stats.challengeMaxWins %></p>
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img class="clan-info-card-img" src="/media/clan/battle.png">
+                            </div>
+                            <div class="col-md-4">
+                                <h4 class="card-title">Total Games</h4>
+                                <p class="card-text"><%= data.games.total %></p>
+                            </div>
+                            <br/>
+                            <div class="col-md-2">
+                                <img class="clan-info-card-img" src="/media/clan/crowns.png">
+                            </div>
+                            <div class="col-md-4">
+                                <h4 class="card-title">3 Crown Wins</h4>
+                                <p class="card-text"><%= data.stats.threeCrownWins %></p>
+                            </div>
+                        </div>
                     </div>
                     <br/>
-                    <div class="col-md-2">
-                        <img class="clan-info-card-img" src="/media/clan/donations.png">
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img class="clan-info-card-img" src="/media/clan/battle.png">
+                            </div>
+                            <div class="col-md-4">
+                                <h4 class="card-title">Wins</h4>
+                                <p class="card-text"><%= data.games.wins %></p>
+                            </div>
+                            <br/>
+                            <div class="col-md-2">
+                                <img class="clan-info-card-img" src="/media/clan/battle.png">
+                            </div>
+                            <div class="col-md-4">
+                                <h4 class="card-title">Losses</h4>
+                                <p class="card-text"><%= data.games.losses %></p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <h4 class="card-title">Challenge Cards Won</h4>
-                        <p class="card-text"><%= data.stats.challengeCardsWon %></p>
+                    <br/>
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img class="clan-info-card-img" src="/media/clan/tournament.png">
+                            </div>
+                            <div class="col-md-4">
+                                <h4 class="card-title">Tournament Games</h4>
+                                <p class="card-text"><%= data.games.tournamentGames %></p>
+                            </div>
+                            <br/>
+                            <div class="col-md-2">
+                                <img class="clan-info-card-img" src="/media/clan/donations.png">
+                            </div>
+                            <div class="col-md-4">
+                                <h4 class="card-title">Tournament Cards Won</h4>
+                                <p class="card-text"><%= data.stats.tournamentCardsWon %></p>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <img class="clan-info-card-img" src="/media/clan/tournament.png">
+                            </div>
+                            <div class="col-md-4">
+                                <h4 class="card-title">Challenge Max Wins</h4>
+                                <p class="card-text"><%= data.stats.challengeMaxWins %></p>
+                            </div>
+                            <br/>
+                            <div class="col-md-2">
+                                <img class="clan-info-card-img" src="/media/clan/donations.png">
+                            </div>
+                            <div class="col-md-4">
+                                <h4 class="card-title">Challenge Cards Won</h4>
+                                <p class="card-text"><%= data.stats.challengeCardsWon %></p>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="card">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <img class="clan-info-card-img" src="<%= data.stats.favoriteCard.icon%>">
+                            </div>
+                            <div class="col-md-7">
+                                <h4 class="card-title">Favorite Card</h4>
+                                <p class="card-text"><%= data.stats.favoriteCard.name %></p>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                    </div>
+                    <br/><br/>
+                    <div class="card">
+                        <h3 class="card-header">Current Deck</h3>
+                        <div class="card-block">
+                            <div id="player-deck">
+                                <% data.currentDeck.forEach(function(card){ %>
+                                    <img src="<%= card.icon %>">
+                                <% }) %>
+                            </div>
+                        </div>
+                    </div>
+                    <br/><br/>
+                    <div class="card">
+                        <h3 class="card-header">Upcoming Chest Cycle</h3>
+                        <div class="card-block">
+                            <div id="player-chest-cycle">
+                                <% data.chestCycle.upcoming.forEach(function(chest){ %>
+                                    <img src="/media/chests/<%=chest%>.png">
+                                <% }) %>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <br/>
-            <div class="card">
-                <div class="row">
-                    <div class="col-md-3">
-                        <img class="clan-info-card-img" src="<%= data.stats.favoriteCard.icon%>">
-                    </div>
-                    <div class="col-md-7">
-                        <h4 class="card-title">Favorite Card</h4>
-                        <p class="card-text"><%= data.stats.favoriteCard.name %></p>
-                    </div>
-                    <div class="col-md-2"></div>
-                </div>
-            </div>
-            <br/><br/>
-            <div class="card">
-                <h3 class="card-header">Current Deck</h3>
-                <div class="card-block">
-                    <div id="player-deck">
-                        <% data.currentDeck.forEach(function(card){ %>
-                            <img src="<%= card.icon %>">
-                        <% }) %>
-                    </div>
-                </div>
-            </div>
-            <br/><br/>
-            <div class="card">
-                <h3 class="card-header">Upcoming Chest Cycle</h3>
-                <div class="card-block">
-                    <div id="player-chest-cycle">
-                        <% data.chestCycle.upcoming.forEach(function(chest){ %>
-                            <img src="/media/chests/<%=chest%>.png">
-                        <% }) %>
-                    </div>
+                <div class="tab-pane fade" id="battle-history" role="tabpanel" aria-labelledby="battle-history-tab">
+                    <%- include('./partials/battleHistory', {battles: data.battles}); %>
                 </div>
             </div>
             <br/><br/>

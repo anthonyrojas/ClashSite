@@ -40,13 +40,13 @@ const server = app.listen(config.port, ()=>{
 });
 
 /*connect socket io to server*/
-const io = require('socket.io').listen(server);
-socketEvents(io);
+//const io = require('socket.io').listen(server);
+//socketEvents(io);
 
 /*connect to the database*/
-mongoose.connect(config.database, {useMongoClient: true}, ()=>{
+/*mongoose.connect(config.database, {useMongoClient: true}, ()=>{
     console.log('connected to mongo');
-});
+});*/
 
 /*load routes*/
 routes(app);

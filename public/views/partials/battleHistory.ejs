@@ -1,0 +1,49 @@
+<% battles.forEach(function(battle){ %>
+    <%if(battle.mode.players === "TvT"){%>
+        <div class="card">
+            <div class="card-header">
+                <%=battle.type%>
+            </div>
+            <div class="row">
+                <div class="col-sm-5">
+                    <a href="/player/<%=battle.team[0].tag%>"><%=battle.team[0].name%></a><br/>
+                    <%battle.team[0].deck.forEach(function(card){%>
+                        <img class="battle-history-deck" src="<%=card.icon%>">
+                    <%});%>
+                    <br/>
+                    <a href="/player/<%=battle.team[1].tag%>"><%=battle.team[1].name%></a><br/>
+                    <%battle.team[1].deck.forEach(function(card){%>
+                        <img class="battle-history-deck" src="<%=card.icon%>">
+                    <%});%>
+                </div>
+                <div class="col-sm-2">
+                    <%if(battle.mode.name.includes("Challenge")){%>
+                        Challenge m8
+                    <% }%>
+                    <%=battle.mode.name%>
+                </div>
+                <div class="col-sm-5">
+                    <%=battle.opponent[0].name%><br/><%=battle.opponent[1].name%>
+                </div>
+            </div>
+        </div>
+    <% }else{ %>
+        <div class="card">
+            <div class="card-header">
+                <%=battle.type%>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <%=battle.mode.players%>
+                </div>
+                <div class="col-sm-4">
+                    <%=battle.team[0].name%>
+                </div>
+                <div class="col-sm-4">
+                    <%=battle.opponent[0].name%>
+                </div>
+            </div>
+        </div>
+    <%}%>
+    <br/><br/>
+<% });%>
