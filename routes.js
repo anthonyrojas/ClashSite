@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 const config = require('./config');
+const apicache = require('apicache');
+
 
 /*import controllers*/
 const pageController = require('./controllers/pageController');
@@ -15,6 +17,7 @@ module.exports = (app)=>{
     var apiRoutes = express.Router();
     var fileRoutes = express.Router();
 
+    let cache = apicache.middleware;
     /*routes for serving data from cr-api.com*/
     /*GET player*/
     //apiRoutes.get('/player/:tag', clanController.getPlayer);
@@ -35,22 +38,22 @@ module.exports = (app)=>{
 
     /*routes for serving static pages*/
     /*index page*/
-    pageRoutes.get('/', clanController.getNormies, pageController.renderIndexPage);
+    pageRoutes.get('/', cache('2 minutes'), clanController.getNormies, pageController.renderIndexPage);
 
     /*normies clan page*/
-    pageRoutes.get('/clan', clanController.getNormies, pageController.renderClanPage);
+    pageRoutes.get('/clan', cache('2 minutes'), clanController.getNormies, pageController.renderClanPage);
     
     /*clan page*/
-    pageRoutes.get('/clan/:tag', clanController.getClan, pageController.renderClanPage);
+    pageRoutes.get('/clan/:tag', cache('2 minutes'), clanController.getClan, pageController.renderClanPage);
 
     /*about page*/
     pageRoutes.get('/about', pageController.renderAboutPage);
 
     /*player info page*/
-    pageRoutes.get('/player/:tag', clanController.getPlayer, pageController.renderPlayerPage);
+    pageRoutes.get('/player/:tag', cache('2 minutes'), clanController.getPlayer, pageController.renderPlayerPage);
 
     /*search page*/
-    pageRoutes.get('/search', pageController.renderSearchPage);
+    pageRoutes.get('/search', cache('2 minutes'), pageController.renderSearchPage);
     
     /*page router*/
     app.use('/', pageRoutes);
