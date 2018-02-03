@@ -5,7 +5,7 @@
                 <%=battle.mode.name%>
             </div>
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-xs-4 col-sm-4">
                     <a href="/player/<%=battle.team[0].tag%>"><%=battle.team[0].name%></a>
                     <br/>
                     <%battle.team[0].deck.forEach(function(card){%>
@@ -18,7 +18,7 @@
                         <img class="battle-history-deck" src="<%=card.icon%>" alt="team deck cards">
                     <%});%>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-xs-4 col-sm-4">
                     <% if(battle.type=="challenge"){ %>
                         <img src="/media/battles/SpecialChallenge.png" class="battle-history-battleIcon" alt="challenge icon">
                     <% } else if(battle.type=="tournament"){ %>
@@ -29,7 +29,7 @@
                         <img src="/media/battles/TvTLadder.png" class="battle-history-battleIcon" alt="2v2 ladder battle icon">
                     <%}%>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-xs-4 col-sm-4">
                     <a href="/player/<%=battle.opponent[0].tag%>"><%=battle.opponent[0].name%></a>
                     <br/>
                     <%battle.opponent[0].deck.forEach(function(card){%>
@@ -50,14 +50,14 @@
                 <%=battle.mode.name%>
             </div>
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-xs-4 col-sm-4">
                     <p><a href="/player/<%=battle.team[0].tag%>"><%=battle.team[0].name%></a></p>
                     <br/>
                     <%battle.team[0].deck.forEach(function(card){%>
                         <img class="battle-history-deck" src="<%=card.icon%>" alt="team deck cards">
                     <%});%>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-xs-4 col-sm-4">
                     <% if(battle.type=="challenge"){ %>
                         <img src="/media/battles/SpecialChallenge.png" class="battle-history-battleIcon" alt="special challenge icon">
                     <% }else if(battle.type=="tournament"){ %>
@@ -68,7 +68,7 @@
                         <img src="/media/battles/Ladder.png" class="battle-history-battleIcon" alt="ladder battle icon">
                     <%}%>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-xs-4 col-sm-4">
                     <p><a href="/player/<%=battle.opponent[0].tag%>"><%=battle.opponent[0].name%></a></p>
                     <br/>
                     <%battle.opponent[0].deck.forEach(function(card){%>
