@@ -2,41 +2,89 @@
     <%if(battle.mode.players === "TvT"){%>
         <div class="card">
             <div class="card-header">
-                <%=battle.mode.name%>
+                <h4><%=battle.mode.name%></h4>
             </div>
             <div class="row">
-                <div class="col-xs-4 col-sm-4">
-                    <a href="/player/<%=battle.team[0].tag%>"><%=battle.team[0].name%></a>
+                <div class="col-4">
+                    <img src="/media/battles/team.png" class="battle-stats-icon" alt="team crowns">
+                    <br/>
+                    <span class="crown-amount"><%=battle.teamCrowns%></span>
+                </div>
+                <div class="col-4">
+                    <% if(battle.type=="challenge2v2"){ %>
+                        <img src="/media/battles/SpecialChallenge.png" class="battle-type-icon" alt="challenge icon">
+                    <% } else if(battle.type=="tournament"){ %>
+                        <img src="/media/battles/Tournament.png" class="battle-type-icon" alt="tournament icon">
+                    <% } else if(battle.type=="clanMate"){ %>
+                        <img src="/media/battles/ClanFriendly.png" class="battle-type-icon" alt="2v2 clan friendly icon">
+                    <% }else{ %>
+                        <img src="/media/battles/TvTLadder.png" class="battle-type-icon" alt="2v2 ladder battle icon">
+                    <%}%>
+                    <br/><br/>
+                    <%if(battle.winner > 0){%>
+                        <span class="win-status-win">Win</span>
+                    <%}else if(battle.winner < 0){%>
+                        <span class="win-status-loss">Loss</span>
+                    <%}else{%>
+                        <span class="win-status-draw">Draw</span>
+                    <%}%>
+                </div>
+                <div class="col-4">
+                    <img src="/media/battles/opponent.png" class="battle-stats-icon" alt="opponent crowns">
+                    <br/>
+                    <span class="crown-amount"><%=battle.opponentCrowns%></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <p class="lead player-name-history">
+                        <a href="/player/<%=battle.team[0].tag%>"><%=battle.team[0].name%></a>
+                    </p>
+                    <p class="player-name-history">
+                        <%if(battle.team[0].clan != null){%>
+                            <a href="/clan/<%=battle.team[0].clan.tag%>"><%=battle.team[0].clan.name%></a>
+                        <%}%>
+                    </p>
                     <br/>
                     <%battle.team[0].deck.forEach(function(card){%>
                         <img class="battle-history-deck" src="<%=card.icon%>" alt="team deck cards">
                     <%});%>
-                    <br/>
-                    <a href="/player/<%=battle.team[1].tag%>"><%=battle.team[1].name%></a>
+                    <br/><br/>
+                    <p class="lead player-name-history">
+                        <a href="/player/<%=battle.team[1].tag%>"><%=battle.team[1].name%></a>
+                    </p>
+                    <p class="player-name-history">
+                        <%if(battle.team[1].clan != null){%>
+                            <a href="/clan/<%=battle.team[1].clan.tag%>"><%=battle.team[1].clan.name%></a>
+                        <%}%>
+                    </p>
                     <br/>
                     <%battle.team[1].deck.forEach(function(card){%>
                         <img class="battle-history-deck" src="<%=card.icon%>" alt="team deck cards">
                     <%});%>
                 </div>
-                <div class="col-xs-4 col-sm-4">
-                    <% if(battle.type=="challenge"){ %>
-                        <img src="/media/battles/SpecialChallenge.png" class="battle-history-battleIcon" alt="challenge icon">
-                    <% } else if(battle.type=="tournament"){ %>
-                        <img src="/media/battles/Tournament.png" class="battle-history-battleIcon" alt="tournament icon">
-                    <% } else if(battle.type=="clanMate"){ %>
-                        <img src="/media/battles/ClanFriendly.png" class="battle-history-battleIcon" alt="2v2 clan friendly icon">
-                    <% }else{ %>
-                        <img src="/media/battles/TvTLadder.png" class="battle-history-battleIcon" alt="2v2 ladder battle icon">
-                    <%}%>
-                </div>
-                <div class="col-xs-4 col-sm-4">
-                    <a href="/player/<%=battle.opponent[0].tag%>"><%=battle.opponent[0].name%></a>
+                <div class="col-6">
+                    <p class="lead player-name-history">
+                        <a href="/player/<%=battle.opponent[0].tag%>"><%=battle.opponent[0].name%></a>
+                    </p>
+                    <p class="player-name-history">
+                        <%if(battle.opponent[0].clan != null){%>
+                            <a href="/clan/<%=battle.opponent[0].clan.tag%>"><%=battle.opponent[0].clan.name%></a>
+                        <%}%>
+                    </p>
                     <br/>
                     <%battle.opponent[0].deck.forEach(function(card){%>
                         <img class="battle-history-deck" src="<%=card.icon%>" alt="opponent cards">
                     <%});%>
-                    <br/>
-                    <a href="/player/<%=battle.opponent[1].tag%>"><%=battle.opponent[1].name%></a>
+                    <br/><br/>
+                    <p class="lead player-name-history">
+                        <a href="/player/<%=battle.opponent[1].tag%>"><%=battle.opponent[1].name%></a>
+                    </p>
+                    <p class="player-name-history">
+                        <%if(battle.opponent[1].clan != null){%>
+                            <a href="/clan/<%=battle.opponent[1].clan.tag%>"><%=battle.opponent[1].clan.name%></a>
+                        <%}%>
+                    </p>
                     <br/>
                     <%battle.opponent[1].deck.forEach(function(card){%>
                         <img class="battle-history-deck" src="<%=card.icon%>" alt="opponent cards">
@@ -47,40 +95,63 @@
     <% }else{ %>
         <div class="card">
             <div class="card-header">
-                <%=battle.mode.name%>
+                <h4><%=battle.mode.name%></h4>
             </div>
             <div class="row">
                 <div class="col-4">
-                    <img src="/media/battles/team.png" class="battle-crown-icon" alt="team crowns"><%=battle.teamCrowns%>
+                    <img src="/media/battles/team.png" class="battle-stats-icon" alt="team crowns">
+                    <br/>
+                    <span class="crown-amount"><%=battle.teamCrowns%></span>
                 </div>
                 <div class="col-4">
-
+                    <% if(battle.type=="challenge"){ %>
+                        <img src="/media/battles/SpecialChallenge.png" class="battle-type-icon" alt="special challenge icon">
+                    <% }else if(battle.type=="tournament"){ %>
+                        <img src="/media/battles/Tournament.png" class="battle-type-icon" alt="tournament icon">
+                    <% }else if(battle.type=="friendly"){ %>
+                        <img src = "/media/battles/Friendly.png" class="battle-type-icon" alt="friendly battle icon">
+                    <% }else{ %>
+                        <img src="/media/battles/Ladder.png" class="battle-type-icon" alt="ladder battle icon">
+                    <%}%>
+                    <br/><br/>
+                    <%if(battle.winner > 0){%>
+                        <span class="win-status-win">Win</span>
+                    <%}else if(battle.winner < 0){%>
+                        <span class="win-status-loss">Loss</span>
+                    <%}else{%>
+                        <span class="win-status-draw">Draw</span>
+                    <%}%>
                 </div>
                 <div class="col-4">
-                    <img src="/media/battles/opponent.png" class="battle-crown-icon" alt="team crowns"><%=battle.opponentCrowns%>
+                    <img src="/media/battles/opponent.png" class="battle-stats-icon" alt="team crowns">
+                    <br/>
+                    <span class="crown-amount"><%=battle.opponentCrowns%></span>
                 </div>
             </div>
             <div class="row">
-                <div class="col-xs-4 col-sm-4">
-                    <p><a href="/player/<%=battle.team[0].tag%>"><%=battle.team[0].name%></a></p>
+                <div class="col-6">
+                    <p class="lead player-name-history">
+                        <a href="/player/<%=battle.team[0].tag%>"><%=battle.team[0].name%></a>
+                    </p>
+                    <p class="player-name-history">
+                        <%if(battle.team[0].clan != null){%>
+                            <a href="/clan/<%=battle.team[0].clan.tag%>"><%=battle.team[0].clan.name%></a>
+                        <%}%>
+                    </p>
                     <br/>
                     <%battle.team[0].deck.forEach(function(card){%>
                         <img class="battle-history-deck" src="<%=card.icon%>" alt="team deck cards">
                     <%});%>
                 </div>
-                <div class="col-xs-4 col-sm-4">
-                    <% if(battle.type=="challenge"){ %>
-                        <img src="/media/battles/SpecialChallenge.png" class="battle-history-battleIcon" alt="special challenge icon">
-                    <% }else if(battle.type=="tournament"){ %>
-                        <img src="/media/battles/Tournament.png" class="battle-history-battleIcon" alt="tournament icon">
-                    <% }else if(battle.type=="friendly"){ %>
-                        <img src = "/media/battles/Friendly.png" class="battle-history-battleIcon" alt="friendly battle icon">
-                    <% }else{ %>
-                        <img src="/media/battles/Ladder.png" class="battle-history-battleIcon" alt="ladder battle icon">
-                    <%}%>
-                </div>
-                <div class="col-xs-4 col-sm-4">
-                    <p><a href="/player/<%=battle.opponent[0].tag%>"><%=battle.opponent[0].name%></a></p>
+                <div class="col-6">
+                    <p class="lead player-name-history">
+                        <a href="/player/<%=battle.opponent[0].tag%>"><%=battle.opponent[0].name%></a>
+                    </p>
+                    <p class="player-name-history">
+                        <%if(battle.opponent[0].clan != null){%>
+                            <a href="/clan/<%=battle.opponent[0].clan.tag%>"><%=battle.opponent[0].clan.name%></a>
+                        <%}%>
+                    </p>
                     <br/>
                     <%battle.opponent[0].deck.forEach(function(card){%>
                         <img class="battle-history-deck" src="<%=card.icon%>" type="opponent deck cards">

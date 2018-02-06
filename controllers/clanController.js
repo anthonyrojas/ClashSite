@@ -50,11 +50,6 @@ exports.getPlayer = (req, res, next)=>{
             err.status = 500;
             next(err);
         }
-        var battles = response.data.battles;
-        console.log(battles);//remove
-        battles.forEach(battle => {
-            console.log(battle);
-        });
         res.locals.player = response.data;
         next();
     })

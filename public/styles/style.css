@@ -134,11 +134,53 @@ main [class^="col"]{
 }
 
 .battle-history-deck{
-    max-height: 5em;
+    max-height: 8em;
 }
 
-.battle-crown-icon{
-    max-height: 5em;
+.battle-stats-icon{
+    max-height: 3em;
+}
+
+.battle-type-icon{
+    max-height: 4.5em;
+}
+
+.player-name-history{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.player-name-history a{
+    color: white;
+}
+
+.player-name-history a:hover{
+    background-color: black;
+    text-decoration: none;
+}
+
+.crown-amount{
+    background-color: black;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+[class^="win-status"]{
+    padding: 0.5em 1em 0.5em 1em;
+    font-weight: bold;
+}
+
+.win-status-win{
+    background-color: blue;
+}
+
+.win-status-loss{
+    background-color: red;
+}
+
+.win-status-draw{
+    background-color: azure;
+    color: black;
 }
 
 @media screen and (max-width: 480px){
@@ -170,6 +212,10 @@ main [class^="col"]{
     }
 
     #player-chest-cycle img{
+        max-height: 4.5em;
+    }
+
+    .battle-history-deck{
         max-height: 4.5em;
     }
 }

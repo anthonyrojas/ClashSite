@@ -60,19 +60,21 @@
                 </div>
                 <div class="card-block">
                     <p class="lead">Tag: <%= data.tag %></p>
-                    <p class="lead" id="player-clantag">
-                        <% if(data.clan.role === "leader"){ %>
-                            Leader
-                        <% }else if(data.clan.role === "coLeader"){ %>
-                            Co Leader
-                        <% }else if(data.clan.role === "elder"){ %>
-                            Elder
-                        <% }else if(data.clan.role === "member"){ %>
-                            Member
-                        <% } %>
-                        at 
-                        <a href="/clan/<%=data.clan.tag%>"><%= data.clan.name%></a>
-                    </p>
+                    <%if(data.clan != null){%>
+                        <p class="lead" id="player-clantag">
+                            <% if(data.clan.role === "leader"){ %>
+                                Leader
+                            <% }else if(data.clan.role === "coLeader"){ %>
+                                Co Leader
+                            <% }else if(data.clan.role === "elder"){ %>
+                                Elder
+                            <% }else if(data.clan.role === "member"){ %>
+                                Member
+                            <% } %>
+                            at 
+                            <a href="/clan/<%=data.clan.tag%>"><%= data.clan.name%></a>
+                        </p>
+                    <%}%>
                     <ul class="nav nav-tabs justify-content-center" id="player-tabs" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="stats-tab" data-toggle="tab" href="#stats" role="tab" aria-controls="stats" aria-selected="true">Stats</a>
