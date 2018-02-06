@@ -51,6 +51,7 @@ exports.getPlayer = (req, res, next)=>{
             next(err);
         }
         var battles = response.data.battles;
+        console.log(battles);//remove
         battles.forEach(battle => {
             console.log(battle);
         });

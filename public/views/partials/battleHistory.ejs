@@ -50,6 +50,17 @@
                 <%=battle.mode.name%>
             </div>
             <div class="row">
+                <div class="col-4">
+                    <img src="/media/battles/team.png" class="battle-crown-icon" alt="team crowns"><%=battle.teamCrowns%>
+                </div>
+                <div class="col-4">
+
+                </div>
+                <div class="col-4">
+                    <img src="/media/battles/opponent.png" class="battle-crown-icon" alt="team crowns"><%=battle.opponentCrowns%>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-xs-4 col-sm-4">
                     <p><a href="/player/<%=battle.team[0].tag%>"><%=battle.team[0].name%></a></p>
                     <br/>

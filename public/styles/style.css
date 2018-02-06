@@ -137,6 +137,10 @@ main [class^="col"]{
     max-height: 5em;
 }
 
+.battle-crown-icon{
+    max-height: 5em;
+}
+
 @media screen and (max-width: 480px){
     #player-deck img{
         max-height: 8em;
