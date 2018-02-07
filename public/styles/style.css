@@ -183,6 +183,10 @@ main [class^="col"]{
     color: black;
 }
 
+.battle-history-trophies{
+    max-height: 2em;
+}
+
 @media screen and (max-width: 480px){
     #player-deck img{
         max-height: 8em;

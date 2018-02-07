@@ -43,7 +43,13 @@
                     <p class="player-name-history">
                         <%if(battle.team[0].clan != null){%>
                             <a href="/clan/<%=battle.team[0].clan.tag%>"><%=battle.team[0].clan.name%></a>
+                        <%}else{%>
+                            <br/>
                         <%}%>
+                    </p>
+                    <p class="player-name-history">
+                        <img src="/media/clan/required_trophies.png" class="battle-history-trophies" alt="starting trophies icon">
+                        <span class="crown-amount"><%=battle.team[0].startTrophies%></span>
                     </p>
                     <br/>
                     <%battle.team[0].deck.forEach(function(card){%>
@@ -56,7 +62,13 @@
                     <p class="player-name-history">
                         <%if(battle.team[1].clan != null){%>
                             <a href="/clan/<%=battle.team[1].clan.tag%>"><%=battle.team[1].clan.name%></a>
+                        <%}else{%>
+                            <br/>
                         <%}%>
+                    </p>
+                    <p class="player-name-history">
+                        <img src="/media/clan/required_trophies.png" class="battle-history-trophies" alt="starting trophies icon">
+                        <span class="crown-amount"><%=battle.team[1].startTrophies%></span>
                     </p>
                     <br/>
                     <%battle.team[1].deck.forEach(function(card){%>
@@ -70,7 +82,13 @@
                     <p class="player-name-history">
                         <%if(battle.opponent[0].clan != null){%>
                             <a href="/clan/<%=battle.opponent[0].clan.tag%>"><%=battle.opponent[0].clan.name%></a>
+                        <%}else{%>
+                            <br/>
                         <%}%>
+                    </p>
+                    <p class="player-name-history">
+                        <img src="/media/clan/required_trophies.png" class="battle-history-trophies" alt="starting trophies icon">
+                        <span class="crown-amount"><%=battle.opponent[0].startTrophies%></span>
                     </p>
                     <br/>
                     <%battle.opponent[0].deck.forEach(function(card){%>
@@ -83,7 +101,13 @@
                     <p class="player-name-history">
                         <%if(battle.opponent[1].clan != null){%>
                             <a href="/clan/<%=battle.opponent[1].clan.tag%>"><%=battle.opponent[1].clan.name%></a>
+                        <%}else{%>
+                            <br/>
                         <%}%>
+                    </p>
+                    <p class="player-name-history">
+                        <img src="/media/clan/required_trophies.png" class="battle-history-trophies" alt="starting trophies icon">
+                        <span class="crown-amount"><%=battle.opponent[1].startTrophies%></span>
                     </p>
                     <br/>
                     <%battle.opponent[1].deck.forEach(function(card){%>
@@ -136,7 +160,13 @@
                     <p class="player-name-history">
                         <%if(battle.team[0].clan != null){%>
                             <a href="/clan/<%=battle.team[0].clan.tag%>"><%=battle.team[0].clan.name%></a>
+                        <%}else{%>
+                            <br/>
                         <%}%>
+                    </p>
+                    <p class="player-name-history">
+                        <img src="/media/clan/required_trophies.png" class="battle-history-trophies" alt="starting trophies icon">
+                        <span class="crown-amount"><%=battle.team[0].startTrophies%></span>
                     </p>
                     <br/>
                     <%battle.team[0].deck.forEach(function(card){%>
@@ -150,7 +180,13 @@
                     <p class="player-name-history">
                         <%if(battle.opponent[0].clan != null){%>
                             <a href="/clan/<%=battle.opponent[0].clan.tag%>"><%=battle.opponent[0].clan.name%></a>
+                        <%}else{%>
+                            <br/>
                         <%}%>
+                    </p>
+                    <p class="player-name-history">
+                        <img src="/media/clan/required_trophies.png" class="battle-history-trophies" alt="starting trophies icon">
+                        <span class="crown-amount"><%=battle.opponent[0].startTrophies%></span>
                     </p>
                     <br/>
                     <%battle.opponent[0].deck.forEach(function(card){%>
