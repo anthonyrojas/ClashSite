@@ -222,4 +222,8 @@ main [class^="col"]{
     .battle-history-deck{
         max-height: 4.5em;
     }
+
+    #error-image{
+        max-width: 10em;
+    }
 }
