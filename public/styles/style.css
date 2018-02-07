@@ -223,7 +223,7 @@ main [class^="col"]{
         max-height: 4.5em;
     }
 
-    #error-image{
-        max-width: 6em;
+    .error-image{
+        max-width: 8em;
     }
 }
