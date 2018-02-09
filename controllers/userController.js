@@ -28,7 +28,7 @@ exports.register = (req, res, next)=>{
         return res.status(422).send({error: 'You must enter a player tag.'});
     }
     //obtain the user name for the new user
-    axios.get(config.host + '/player/' + playerTagEntry, crapiConfig)
+    axios.get(config.host + '/player/' + playerTagEntry.toString().trim() + '?keys=tag,name,clan', crapiConfig)
     .then(response=>{
         if(response.data.name === null || response.data.name === "" || response.data.name == undefined ){
             return res.status(422).send({error: 'Player information not found. Invalid tag.'});
