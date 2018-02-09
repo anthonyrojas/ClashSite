@@ -28,6 +28,11 @@ exports.getClan = (req, res, next)=>{
             err.status = 500;
             next(err);
         }
+        else if(errStatus === 429){
+            var err = new Error('The service from which the data is pulled has set a limit for requests per every 2 minutes. Seems we have reached this limit. Please standby for service to resume');
+            err.status = 500;
+            next(err);
+        }
         else if(errStatus === 503){
             var err = new Error('The service for Clash Royale information is down. Unfortunately, most of this website is dependent on cr-api.com working properly. The information on this site will be back to normal as soon as cr-api.com is working again. Many apologies -- Sir Doge');
             err.status = 500;
@@ -61,6 +66,11 @@ exports.getPlayer = (req, res, next)=>{
             err.status = 500;
             next(err);
         }
+        else if(errStatus === 429){
+            var err = new Error('The service from which the data is pulled has set a limit for requests per every 2 minutes. Seems we have reached this limit. Please standby for service to resume');
+            err.status = 500;
+            next(err);
+        }
         else if(errStatus === 503){
             var err = new Error('The service for Clash Royale information is down. Unfortunately, most of this website is dependent on cr-api.com working properly. The information on this site will be back to normal as soon as cr-api.com is working again. Many apologies -- Sir Doge');
             err.status = 500;
@@ -89,6 +99,11 @@ exports.getClanHistory = (req, res, next)=>{
             err.status = 500;
             next(err);
         }
+        else if(errStatus === 429){
+            var err = new Error('The service from which the data is pulled has set a limit for requests per every 2 minutes. Seems we have reached this limit. Please standby for service to resume');
+            err.status = 500;
+            next(err);
+        }
         else if(errStatus === 503){
             var err = new Error('The service for Clash Royale information is down. Unfortunately, most of this website is dependent on cr-api.com working properly. The information on this site will be back to normal as soon as cr-api.com is working again. Many apologies -- Sir Doge');
             err.status = 500;
@@ -113,6 +128,11 @@ exports.getNormies = (req, res, next)=>{
         const errText = error.response.statusText;
         if(errStatus === 400 || errStatus === 404){
             var err = new Error('Clan information not found. Invalid tag.');
+            err.status = 500;
+            next(err);
+        }
+        else if(errStatus === 429){
+            var err = new Error('The service from which the data is pulled has set a limit for requests per every 2 minutes. Seems we have reached this limit. Please standby for service to resume');
             err.status = 500;
             next(err);
         }

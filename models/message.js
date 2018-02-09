@@ -9,11 +9,13 @@ const MessageSchema = new Schema({
     sender: {
         type: Schema.Types.ObjectId,
         ref: 'User'   
+    },
+    dateCreated: {
+        type: Date,
+        default: Date.now
     }
-},{
-    timestamps: true
 });
 
 
 
-module.exports = mongoose.model("Message", MessageSchema);
+module.exports = mongoose.model('Message', MessageSchema);

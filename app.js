@@ -9,9 +9,10 @@ const routes = require('./routes');
 const path = require('path');
 const socketEvents = require('./socketEvents');
 
-const pageRouter = express.Router();
-
 var config = require('./config');
+
+/*connect to the database*/
+mongoose.connect(config.database);
 
 /*Setting up middleware*/
 app.use(logger('dev'));
@@ -42,11 +43,6 @@ const server = app.listen(config.port, ()=>{
 /*connect socket io to server*/
 //const io = require('socket.io').listen(server);
 //socketEvents(io);
-
-/*connect to the database*/
-/*mongoose.connect(config.database, {useMongoClient: true}, ()=>{
-    console.log('connected to mongo');
-});*/
 
 /*load routes*/
 routes(app);
