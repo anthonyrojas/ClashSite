@@ -11,8 +11,14 @@ const socketEvents = require('./socketEvents');
 
 var config = require('./config');
 
+/*visibility to client for public folder items and serving them*/
+app.use(express.static(path.join(__dirname, '/public')));
+
+/*set and enable ejs as view engine*/
+app.set('view engine', 'ejs');
+
 /*connect to the database*/
-mongoose.connect(config.database);
+//mongoose.connect(config.database, {useMongoClient: true});
 
 /*Setting up middleware*/
 app.use(logger('dev'));
@@ -28,12 +34,6 @@ app.use((req, res, next)=>{
     res.header("Access-Control-Allow-Credentials", "true");
     next();
 });
-
-/*visibility to client for public folder items and serving them*/
-app.use(express.static(path.join(__dirname, '/public')));
-
-/*set and enable ejs as view engine*/
-app.set('view engine', 'ejs');
 
 /*start express server*/
 const server = app.listen(config.port, ()=>{

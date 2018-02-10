@@ -93,7 +93,7 @@ exports.signIn = (req, res, next)=>{
             return res.status(401).json({message: 'Authentication failed. Invalid player tag or password'});
         }
         //jwt is signed so that the token expires in 24 hours, at which point the user will have to sign in again
-        return res.json({token: jwt.sign({email: user.email, playerTag: user.playerTag, _id: user._id}, config.secret, {expiresIn: 86400})});
+        return res.json({token: jwt.sign({email: user.email, playerTag: user.playerTag, username: user.username, _id: user._id}, config.secret, {expiresIn: 86400})});
     });
 };
 

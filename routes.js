@@ -25,15 +25,15 @@ module.exports = (app)=>{
 
     let cache = apicache.middleware;
 
-    /*api routes for user authentication and login*/
-    /*TODO: logout route*/
-    apiRoutes.post('/register', userController.register);
+    //api routes for user authentication and login
+    //TODO: logout route
+    /*apiRoutes.post('/register', userController.register);
 
     apiRoutes.post('/login', userController.signIn);
 
     app.use('/api', apiRoutes);
 
-    /*chat routes*/
+    //chat routes
     chatRoutes.use((req, res, next)=>{
         if(req.headers && req.headers.authorization){
             jwt.verify(req.headers.authorization, config.secret, function(err, decode){
@@ -51,7 +51,7 @@ module.exports = (app)=>{
 
     chatRoutes.post('/send', userController.loginRequired, chatController.sendMessage);
 
-    app.use('/api/chat', chatRoutes);
+    app.use('/api/chat', chatRoutes);*/
 
     /*routes for serving files (pictures, etc.)*/
     /*GET pictures in media/home folder*/

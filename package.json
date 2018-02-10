@@ -11,9 +11,9 @@
     "apicache": "*",
     "axios": "*",
     "bcrypt": "*",
-    "bcrypt-nodejs": "*",
     "body-parser": "*",
     "crypto": "*",
+    "dateformat": "*",
     "express": "*",
     "ejs": "*",
     "fs": "*",
@@ -23,7 +23,6 @@
     "morgan": "*",
     "multer": "*",
     "path": "*",
-    "request": "*",
     "socket.io": "*"
   },
   "author": "Anthony",
