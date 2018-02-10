@@ -4,7 +4,7 @@ const axios = require('axios');
 const config = require('../config');
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt-nodejs');
 const User = require('../models/user');
 
 const crapiConfig = {

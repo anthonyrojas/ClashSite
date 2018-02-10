@@ -10,7 +10,7 @@
   "dependencies": {
     "apicache": "*",
     "axios": "*",
-    "bcrypt": "*",
+    "bcrypt-nodejs": "*",
     "body-parser": "*",
     "crypto": "*",
     "dateformat": "*",
