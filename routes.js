@@ -21,13 +21,12 @@ module.exports = (app)=>{
     var pageRoutes = express.Router();
     var chatRoutes = express.Router();
     var apiRoutes = express.Router();
-    var fileRoutes = express.Router();
 
     let cache = apicache.middleware;
 
     //api routes for user authentication and login
     //TODO: logout route
-    /*apiRoutes.post('/register', userController.register);
+    apiRoutes.post('/register', userController.register);
 
     apiRoutes.post('/login', userController.signIn);
 
@@ -51,40 +50,27 @@ module.exports = (app)=>{
 
     chatRoutes.post('/send', userController.loginRequired, chatController.sendMessage);
 
-    app.use('/api/chat', chatRoutes);*/
+    app.use('/api/chat', chatRoutes);
+    
+    //routes for serving static pages
+    //index page
+    pageRoutes.get('/', cache('2 minutes'), filesController.getIndexPictures, clanController.getNormies, pageController.renderIndexPage);
 
-    /*routes for serving files (pictures, etc.)*/
-    /*GET pictures in media/home folder*/
-    fileRoutes.get('/media/home', filesController.getPictures);
-
-    app.use('/files', fileRoutes);
-
-    /*api routes*/
-    apiRoutes.post('/register', userController.register);
-
-    apiRoutes.post('/signIn', userController.signIn);
-
-    app.use('/api', apiRoutes);
-
-    /*routes for serving static pages*/
-    /*index page*/
-    pageRoutes.get('/', cache('2 minutes'), clanController.getNormies, pageController.renderIndexPage);
-
-    /*normies clan page*/
+    //normies clan page
     pageRoutes.get('/clan', cache('2 minutes'), clanController.getNormies, pageController.renderClanPage);
     
-    /*clan page*/
+    //clan page
     pageRoutes.get('/clan/:tag', cache('2 minutes'), clanController.getClan, pageController.renderClanPage);
 
-    /*about page*/
+    //about page
     pageRoutes.get('/about', pageController.renderAboutPage);
 
-    /*player info page*/
+    //player info page
     pageRoutes.get('/player/:tag', cache('2 minutes'), clanController.getPlayer, pageController.renderPlayerPage);
 
-    /*search page*/
+    //search page
     pageRoutes.get('/search', cache('2 minutes'), pageController.renderSearchPage);
     
-    /*page router*/
+    //page router
     app.use('/', pageRoutes);
 }

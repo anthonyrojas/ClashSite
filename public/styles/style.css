@@ -89,7 +89,7 @@ main [class^="col"]{
 }
 
 #banner{
-    margin-top: 5em;
+    margin-top: 4.5em;
     margin-bottom: 0;
     height: auto;
     width: fit-content;
@@ -188,6 +188,12 @@ main [class^="col"]{
 }
 
 @media screen and (max-width: 480px){
+    #banner{
+        margin-top: 5em;
+        margin-bottom: 0;
+        height: auto;
+        width: fit-content;
+    }
     #player-deck img{
         max-height: 8em;
     }

@@ -1,16 +1,15 @@
-"use strict"
+"use strict";
 const fs = require('fs');
 const config = require('../config');
 
-exports.getPictures = (req, res, next)=>{
+exports.getIndexPictures = (req, res, next)=>{
     var fileArr = [];
-    var filePath = './public' + req.path + '/';
-    //var filePath = p.resolve(filePathStr) + '/';
-    var filePathStr = '.' + req.path + '/';
+    var filePath = './public/media/home/';
     fs.readdir(filePath, (err,files)=>{
         files.forEach(file=>{
-            fileArr.push({name: filePathStr + file});
+            fileArr.push({name: "/media/home/" + file});
         });
-        res.json(fileArr);
+        res.locals.indexPics = fileArr;
+        next();
     });
 };

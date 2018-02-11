@@ -19,7 +19,7 @@ exports.renderIndexPage = (req, res, next)=>{
             topEarner = member;
         }
     });
-    res.render(path.resolve('./public/views/index'), {leader: leaderMember, top: topEarner });
+    res.render(path.resolve('./public/views/index'), {leader: leaderMember, top: topEarner, pics: res.locals.indexPics });
 };
 
 /*render the clan page*/
