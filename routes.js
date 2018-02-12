@@ -70,6 +70,12 @@ module.exports = (app)=>{
 
     //search page
     pageRoutes.get('/search', cache('2 minutes'), pageController.renderSearchPage);
+
+    //login page
+    pageRoutes.get('/login', pageController.renderLoginPage);
+
+    //registration page
+    pageRoutes.get('/register', pageController.renderRegisterPage);
     
     //page router
     app.use('/', pageRoutes);

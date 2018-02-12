@@ -41,3 +41,13 @@ exports.renderAboutPage = (req, res, next)=>{
 exports.renderSearchPage = (req, res, next)=>{
     res.render(path.resolve('./public/views/search'), null);
 }
+
+//render the login page
+exports.renderLoginPage = (req, res, next)=>{
+    res.render(path.resolve('./public/views/login'), null);
+}
+
+//render the register page
+exports.renderRegisterPage = (req, res, next)=>{
+    res.render(path.resolve('./public/views/register'), null);
+}

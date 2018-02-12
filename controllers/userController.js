@@ -29,7 +29,7 @@ exports.register = (req, res, next)=>{
     }
 
     //check if a user with the player tag exists
-    User.findOne({playerTagEntry}, (err, existingUser)=>{
+    User.findOne({playerTag: playerTagEntry}, (err, existingUser)=>{
         if(err){
             return res.status(500).send({error: 'Error connecting to the database.'});
         }
@@ -38,20 +38,21 @@ exports.register = (req, res, next)=>{
             return res.status(422).send({error: 'The player tag you have entered is already in use.'});
         }
         //obtain the user name for the new user if the player tag does not exist
-        axios.get(config.host + '/player/' + playerTagEntry + '?keys=tag,name,clan', crapiConfig)
+        axios.get(config.host + '/player/' + playerTagEntry, crapiConfig)
         .then(response=>{
-            if(response.data.name === null || response.data.name === "" || response.data.name == undefined ){
+            const usernameEntry = response.data.name;
+            if(usernameEntry === null || usernameEntry === "" || usernameEntry == undefined ){
                 return res.status(422).send({error: 'Player information not found. Invalid tag.'});
             }
-            const usernameEntry = response.data.name;
             //create and save the user if it does not exist
+            const salt = bcrypt.genSaltSync(10);//generate salt with factor 10
+            const hashPassword = bcrypt.hashSync(passwordEntry, salt);//hash the password
             var newUser = new User({
                 email: emailEntry,
-                password: bcrypt.hashSync(passwordEntry, 10),
-                username: usernameEntry,
-                playerTag: playerTagEntry
+                password: hashPassword,
+                playerTag: playerTagEntry,
+                username: usernameEntry
             });
-            //console.log(newUser);
             //save the new user in the database
             newUser.save((err, user)=>{
                 if(err){

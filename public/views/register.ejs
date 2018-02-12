@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Login</title>
+    <title>Register User</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/media/favicon/icon.png">
     <!--bootstrap-->
@@ -51,9 +51,10 @@
     </header>
     <main>
         <div class="container" id="wrapper">
-            <form action="/api/login" method="post">
+            <form action="/api/register" method="post">
                 <input type="text" name="playerTag" placeholder="player tag"/><br/>
-                <input type="password" name="password"/><br/>
+                <input type="text" name="email" placeholder="email"><br/>
+                <input type="text" name="password" placeholder="password"/><br/>
                 <button type="submit" value="Submit">Submit</button>
             </form>
         </div>
