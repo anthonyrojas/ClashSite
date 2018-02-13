@@ -26,7 +26,7 @@ module.exports = (app)=>{
 
     //api routes for user authentication and login
     //TODO: logout route
-    apiRoutes.post('/register', userController.register);
+    /*apiRoutes.post('/register', userController.register);
 
     apiRoutes.post('/login', userController.signIn);
 
@@ -50,7 +50,7 @@ module.exports = (app)=>{
 
     chatRoutes.post('/send', userController.loginRequired, chatController.sendMessage);
 
-    app.use('/api/chat', chatRoutes);
+    app.use('/api/chat', chatRoutes);*/
     
     //routes for serving static pages
     //index page
@@ -66,7 +66,7 @@ module.exports = (app)=>{
     pageRoutes.get('/about', pageController.renderAboutPage);
 
     //player info page
-    pageRoutes.get('/player/:tag', cache('2 minutes'), clanController.getPlayer, pageController.renderPlayerPage);
+    pageRoutes.get('/player/:tag', cache('2 minutes'), clanController.getPlayer, clanController.getPlayerBattles, clanController.getPlayerChests, pageController.renderPlayerPage);
 
     //search page
     pageRoutes.get('/search', cache('2 minutes'), pageController.renderSearchPage);

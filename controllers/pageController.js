@@ -29,7 +29,7 @@ exports.renderClanPage = (req, res, next)=>{
 
 /*render a player page*/
 exports.renderPlayerPage = (req, res, next)=>{
-    res.render(path.resolve('./public/views/player'), {data: res.locals.player});
+    res.render(path.resolve('./public/views/player'), {data: res.locals.player, battles: res.locals.playerBattles, chests: res.locals.playerChests});
 };
 
 /*render the about page*/

@@ -84,6 +84,82 @@ exports.getPlayer = (req, res, next)=>{
     });
 };
 
+exports.getPlayerBattles = (req, res, next)=>{
+    var playerTag = req.params.tag;
+    axios.get(config.host + '/player/' + playerTag + '/battles', configuration)
+    .then(response=>{
+        if(response.data.name === null || response.data.name === ""){
+            var err = new Error('Player information not found. Invalid tag.');
+            err.status = 500;
+            next(err);
+        }
+        res.locals.playerBattles = response.data;
+        next();
+    })
+    .catch(error=>{
+        const errStatus = error.response.status;
+        const errText = error.response.statusText;
+        if(errStatus === 404 || errStatus === 400){
+            var err = new Error('Player information not found. Invalid tag.');
+            err.status = 500;
+            next(err);
+        }
+        else if(errStatus === 429){
+            var err = new Error('The service from which the data is pulled has set a limit for requests per every 2 minutes. Seems we have reached this limit. Please standby for service to resume');
+            err.status = 500;
+            next(err);
+        }
+        else if(errStatus === 503){
+            var err = new Error('The service for Clash Royale information is down. Unfortunately, most of this website is dependent on cr-api.com working properly. The information on this site will be back to normal as soon as cr-api.com is working again. Many apologies -- Sir Doge');
+            err.status = 500;
+            next(err);
+        }
+        else{
+            var err = new Error(errText);
+            err.status = 500;
+            next(err);
+        }
+    });
+};
+
+exports.getPlayerChests = (req, res, next)=>{
+    var playerTag = req.params.tag;
+    axios.get(config.host + '/player/' + playerTag + '/chests', configuration)
+    .then(response=>{
+        if(response.data.name === null || response.data.name === ""){
+            var err = new Error('Player information not found. Invalid tag.');
+            err.status = 500;
+            next(err);
+        }
+        res.locals.playerChests = response.data;
+        next();
+    })
+    .catch(error=>{
+        const errStatus = error.response.status;
+        const errText = error.response.statusText;
+        if(errStatus === 404 || errStatus === 400){
+            var err = new Error('Player information not found. Invalid tag.');
+            err.status = 500;
+            next(err);
+        }
+        else if(errStatus === 429){
+            var err = new Error('The service from which the data is pulled has set a limit for requests per every 2 minutes. Seems we have reached this limit. Please standby for service to resume');
+            err.status = 500;
+            next(err);
+        }
+        else if(errStatus === 503){
+            var err = new Error('The service for Clash Royale information is down. Unfortunately, most of this website is dependent on cr-api.com working properly. The information on this site will be back to normal as soon as cr-api.com is working again. Many apologies -- Sir Doge');
+            err.status = 500;
+            next(err);
+        }
+        else{
+            var err = new Error(errText);
+            err.status = 500;
+            next(err);
+        }
+    });
+};
+
 exports.getClanHistory = (req, res, next)=>{
     var clanTag = req.params.tag;
     axios.get(config.host + '/clan/' + clanTag + '/history', configuration)
