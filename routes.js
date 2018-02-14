@@ -76,6 +76,9 @@ module.exports = (app)=>{
 
     //registration page
     pageRoutes.get('/register', pageController.renderRegisterPage);
+
+    //messaging page
+    pageRoutes.get('/messaging', pageController.renderMessagingPage);
     
     //page router
     app.use('/', pageRoutes);

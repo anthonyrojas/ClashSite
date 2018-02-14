@@ -22,7 +22,11 @@ app.set('view engine', 'ejs');
 //mongoose.connect(config.database, {useMongoClient: true});
 
 /*Setting up middleware*/
-app.use(logger('dev'));
+if(process.env.NODE_ENV === 'production'){
+    app.use(logger('combined'));
+}else{
+    app.use(logger('dev'));
+}
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 //app.use(multer()); //for uploading files, will include in a future version
