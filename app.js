@@ -23,7 +23,7 @@ app.set('view engine', 'ejs');
 
 /*Setting up middleware*/
 if(process.env.NODE_ENV === 'production'){
-    app.use('trust proxy', true);
+    app.set('trust proxy', true);
     app.use(logger('combined'));
 }else{
     app.use(logger('dev'));
