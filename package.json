@@ -12,6 +12,7 @@
     "axios": "*",
     "bcrypt-nodejs": "*",
     "body-parser": "*",
+    "cookie-parser": "*",
     "crypto": "*",
     "dateformat": "*",
     "express": "*",

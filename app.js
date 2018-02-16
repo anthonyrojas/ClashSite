@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const multer = require('multer');
 const mongoose = require('mongoose');
@@ -18,8 +19,8 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.set('view engine', 'ejs');
 
 /*connect to the database*/
-//mongoose.Promise = global.Promise;
-//mongoose.connect(config.database, {useMongoClient: true});
+mongoose.Promise = global.Promise;
+mongoose.connect(config.database, {useMongoClient: true});
 
 /*Setting up middleware*/
 if(process.env.NODE_ENV === 'production'){
@@ -30,6 +31,7 @@ if(process.env.NODE_ENV === 'production'){
 }
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(cookieParser());
 //app.use(multer()); //for uploading files, will include in a future version
 
 /*Enable CORS from client-side*/

@@ -56,3 +56,8 @@ exports.renderRegisterPage = (req, res, next)=>{
 exports.renderMessagingPage = (req, res, next)=>{
     res.render(path.resolve('./public/views/messages'), null);
 }
+
+//render the account page
+exports.renderAccountPage = (req, res, next)=>{
+    res.render(path.resolve('./public/views/account'), null);
+};

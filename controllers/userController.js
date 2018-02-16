@@ -94,15 +94,26 @@ exports.signIn = (req, res, next)=>{
             return res.status(401).json({message: 'Authentication failed. Invalid player tag or password'});
         }
         //jwt is signed so that the token expires in 24 hours, at which point the user will have to sign in again
-        return res.json({token: jwt.sign({email: user.email, playerTag: user.playerTag, username: user.username, _id: user._id}, config.secret, {expiresIn: 86400})});
+        //return res.json({token: jwt.sign({email: user.email, playerTag: user.playerTag, username: user.username, _id: user._id}, config.secret, {expiresIn: 86400})});
+        res.cookie('Authorization', jwt.sign({email: user.email, playerTag: user.playerTag, username: user.username, _id: user._id}, config.secret), {secure: true});
+        res.redirect('/account');
+        //res.send('Successfully logged in!');
     });
 };
 
 exports.loginRequired = (req, res, next)=>{
-    if(req.user){
-        next();
-    }
-    else{
-        return res.status(401).json({message: 'Unauthorized user!'});
-    }
+    const authCookie = req.cookies['Authorization'];
+    jwt.verify(authCookie, config.secret, (err, decoded)=>{
+        if(err){
+            return res.status(401).json({message: 'Unauthorized user!'});
+        }else{
+            req.user = decoded;
+            if(req.user){   
+                next();
+            }
+            else{
+                return res.status(401).json({message: 'Unauthorized user!'});
+            }
+        }
+    });
 };

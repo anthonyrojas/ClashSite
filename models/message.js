@@ -8,7 +8,8 @@ const MessageSchema = new Schema({
     },
     sender: {
         type: Schema.Types.ObjectId,
-        ref: 'User'   
+        ref: 'User',
+        required: true
     },
     dateCreated: {
         type: Date,

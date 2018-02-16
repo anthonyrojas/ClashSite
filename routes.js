@@ -26,7 +26,7 @@ module.exports = (app)=>{
 
     //api routes for user authentication and login
     //TODO: logout route
-    /*apiRoutes.post('/register', userController.register);
+    apiRoutes.post('/register', userController.register);
 
     apiRoutes.post('/login', userController.signIn);
 
@@ -50,7 +50,7 @@ module.exports = (app)=>{
 
     chatRoutes.post('/send', userController.loginRequired, chatController.sendMessage);
 
-    app.use('/api/chat', chatRoutes);*/
+    app.use('/api/chat', chatRoutes);
     
     //routes for serving static pages
     //index page
@@ -79,6 +79,8 @@ module.exports = (app)=>{
 
     //messaging page
     pageRoutes.get('/messaging', pageController.renderMessagingPage);
+
+    pageRoutes.get('/account', pageController.renderAccountPage);
     
     //page router
     app.use('/', pageRoutes);
