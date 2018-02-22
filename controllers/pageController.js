@@ -68,5 +68,7 @@ exports.renderMessagingPage = (req, res, next)=>{
 
 //render the account page
 exports.renderAccountPage = (req, res, next)=>{
-    res.render(path.resolve('./public/views/account'), {user: req.user});
+    const user = req.user;
+    console.log(user);
+    res.render(path.resolve('./public/views/account'), {user: user});
 };

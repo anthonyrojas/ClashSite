@@ -135,7 +135,7 @@ exports.loginRequired = (req, res, next)=>{
             return res.status(401).json({message: 'Unauthorized user!'});
         }else{
             req.user = decoded;
-            if(req.user){   
+            if(req.user){
                 next();
             }
             else{
