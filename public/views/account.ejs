@@ -49,9 +49,14 @@
     </header>
     <main>
         <div class="container" id="wrapper">
-            <div class="jumbotron">
-                <h2 class="display-3">Welcome!</h2>
-                <p class="lead">Congrats! You have successfully logged in. This is where the account information would ...if i could do it!</p>
+            <h1>Welcome!</h1>
+            <div class="card">
+                <h3 class="card-header display-5"><%= user.username%></h3>
+                <div class="card-block">
+                    <h4>Player Tag: <%= user.playerTag%></h4>
+                    <h4>Email: <%= user.email></h4>
+                    <h4>Joined On: <%= user.dateCreated%></h4>
+                </div>
             </div>
         </div>
     </main>

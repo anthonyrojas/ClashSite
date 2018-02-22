@@ -49,12 +49,55 @@
     </header>
     <main>
         <div class="container" id="wrapper">
-            <form action="/api/register" method="post">
-                <input type="text" name="playerTag" placeholder="player tag"/><br/>
-                <input type="text" name="email" placeholder="email"><br/>
-                <input type="text" name="password" placeholder="password"/><br/>
-                <button type="submit" value="Submit">Submit</button>
+            <h2>User Registration</h2>
+            <br>
+            <form action="/api/register" method="post" id="normies-user-form">
+                <div class="normies-user-form-inputs">
+                    <p>
+                        Welcome to the registration portal! 
+                        As a registered user of The Normies site, you are granted access to all the privileges and features that come with it.
+                        Currently, users can use our messaging board to keep in touch with everyone from the clan, or any outsiders.
+                        A page for user-generated posts (somewhat similar to Facebook) will be implemented in the near future.
+                    </p>
+                    <br/>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <label for="inputPlayerTag">Player Tag</label>
+                                <input type="text" class="form-control" name="playerTag" id="inputPlayerTag" aria-describedby="playerTagHelp" placeholder="Enter player tag">
+                                <small id="inputPlayerTag" class="form-text text-muted">Enter your player tag provided by Clash Royale.</small>
+                            </div>
+                            <div class="col-md-4"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <label for="inputEmail">Email</label>
+                                <input type="text" class="form-control" name="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email">
+                                <small id="emailHelp" class="form-text text-muted">Please enter a valid email. It will be used for password resets.</small>
+                            </div>
+                            <div class="col-md-4"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <label for="inputPassword">Password</label>
+                                <input type="password" name="password" class="form-control" id="inputPassword" aria-describedby="passwordHelp">
+                                <small id="passwordHelp" class="form-text text-muted">At the moments there are no password requirements.</small>
+                            </div>
+                            <div class="col-md-4"></div>
+                        </div>
+                    </div>
+                </div>
+                <br/>
+                <button type="submit" class="btn">Register</button>
             </form>
+            <br/>            
         </div>
     </main>
     <footer>

@@ -88,16 +88,40 @@ exports.signIn = (req, res, next)=>{
         playerTag: req.body.playerTag
     }, (err, user)=>{
         if(err){
-            res.status(500).send({error: 'Error connecting to database. Could not sign in at this time.'});
+            res.status(500).json({error: 'Error connecting to database. Could not sign in at this time.'});
         }
         if(!user || !user.comparePassword(req.body.password)){
-            return res.status(401).json({message: 'Authentication failed. Invalid player tag or password'});
+            res.redirect('/login?error=auth');
+            //res.status(401).json({error: 'Authentication failed. Invalid player tag or password'});
         }
-        //jwt is signed so that the token expires in 24 hours, at which point the user will have to sign in again
-        //return res.json({token: jwt.sign({email: user.email, playerTag: user.playerTag, username: user.username, _id: user._id}, config.secret, {expiresIn: 86400})});
-        res.cookie('Authorization', jwt.sign({email: user.email, playerTag: user.playerTag, username: user.username, _id: user._id}, config.secret), {secure: true});
-        res.redirect('/account');
-        //res.send('Successfully logged in!');
+        else{
+            //jwt is signed so that the token expires in 24 hours, at which point the user will have to sign in again
+            //return res.json({token: jwt.sign({email: user.email, playerTag: user.playerTag, username: user.username, _id: user._id}, config.secret, {expiresIn: 86400})});
+        
+            //for production:
+            //res.cookie('Authorization', jwt.sign({email: user.email, playerTag: user.playerTag, username: user.username, _id: user._id}, config.secret), {secure: true});
+        
+            //for dev and testing:
+            res.cookie('Authorization', jwt.sign({email: user.email, playerTag: user.playerTag, username: user.username, _id: user._id}, config.secret), {httpOnly: true});
+            res.redirect('/account');
+        }
+    });
+};
+
+exports.userInfo = (req, res, next)=>{
+    User.findOne({
+        _id: req.user._id
+    }, (err, user)=>{
+        if(err){
+            res.status(401).json({error: 'Error connecting to database.'});
+        }
+        if(!user){
+            //return res.status(402).json({error: 'User not found. Sign in again'});
+            res.redirect('/login?error=login');
+        }else{
+            res.locals.user = user;
+            next();
+        }
     });
 };
 
@@ -112,8 +136,17 @@ exports.loginRequired = (req, res, next)=>{
                 next();
             }
             else{
+                //res.redirect('/login?error=login');
                 return res.status(401).json({message: 'Unauthorized user!'});
             }
         }
     });
+};
+
+exports.checkLogin = (req, res, next)=>{
+    const authCookie = req.cookies['Authorization'];
+    jwt.verify(authCookie, config.secret, (err, decoded)=>{
+        //see if the user is signed in
+        //this will be used to display different nav items, like messages ...but only when the user is signed in
+    })
 };

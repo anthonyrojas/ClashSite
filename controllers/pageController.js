@@ -44,7 +44,16 @@ exports.renderSearchPage = (req, res, next)=>{
 
 //render the login page
 exports.renderLoginPage = (req, res, next)=>{
-    res.render(path.resolve('./public/views/login'), null);
+    if(req.query.error){
+        var authError = req.query.error;
+        if(authError === 'auth'){
+            res.render(path.resolve('./public/views/login'), {error: {message: 'Authentication failed. Invalid player tag or password'}});
+        }else if(authError === 'login'){
+            res.render(path.resolve('./public/views/login'), {error: {message: 'Authentication failed. Log in again. Your sign in token seems to be corrupted or is no longer valid.'}});
+        }
+    }else{
+        res.render(path.resolve('./public/views/login'), {error: null});
+    }
 }
 
 //render the register page
@@ -59,5 +68,5 @@ exports.renderMessagingPage = (req, res, next)=>{
 
 //render the account page
 exports.renderAccountPage = (req, res, next)=>{
-    res.render(path.resolve('./public/views/account'), null);
+    res.render(path.resolve('./public/views/account'), {user: res.locals.user});
 };

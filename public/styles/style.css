@@ -58,14 +58,12 @@ body{
 }
 
 footer{
-    /*position: absolute;*/
     bottom: 0;
     width: 100%;
     background: black;
     color: antiquewhite;
     padding-bottom: 2.5em;
     padding-top: 1em;
-    /*padding-left: 2em;*/
     text-align: center;
     overflow: hidden;
 }
@@ -91,8 +89,8 @@ main [class^="col"]{
 #banner{
     margin-top: 4.5em;
     margin-bottom: 0;
-    height: auto;
-    width: fit-content;
+    /*height: auto;*/
+    width: 100%;
 }
 
 #clan-title h1{
@@ -187,12 +185,20 @@ main [class^="col"]{
     max-height: 2em;
 }
 
+.normies-user-form-inputs{
+    text-align: left;
+}
+
+#normies-user-form{
+    padding: 0 1em 0 1em;
+}
+
 @media screen and (max-width: 480px){
     #banner{
         margin-top: 5em;
         margin-bottom: 0;
-        height: auto;
-        width: fit-content;
+        /*height: auto;*/
+        width: 100%;
     }
     #player-deck img{
         max-height: 8em;
