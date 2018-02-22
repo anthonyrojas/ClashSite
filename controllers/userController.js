@@ -98,12 +98,15 @@ exports.signIn = (req, res, next)=>{
             //jwt is signed so that the token expires in 24 hours, at which point the user will have to sign in again
             //return res.json({token: jwt.sign({email: user.email, playerTag: user.playerTag, username: user.username, _id: user._id}, config.secret, {expiresIn: 86400})});
         
-            //for production:
-            //res.cookie('Authorization', jwt.sign({email: user.email, playerTag: user.playerTag, username: user.username, _id: user._id}, config.secret), {secure: true});
-        
             //for dev and testing:
-            res.cookie('Authorization', jwt.sign({email: user.email, playerTag: user.playerTag, username: user.username, _id: user._id}, config.secret), {httpOnly: true});
-            res.redirect('/account');
+            if(process.env.NODE_ENV === 'production'){
+                //for production:
+                res.cookie('Authorization', jwt.sign({email: user.email, playerTag: user.playerTag, username: user.username, _id: user._id}, config.secret), {secure: true});
+                res.redirect('/account');
+            }else{
+                res.cookie('Authorization', jwt.sign({email: user.email, playerTag: user.playerTag, username: user.username, _id: user._id}, config.secret), {httpOnly: true});
+                res.redirect('/account');
+            }
         }
     });
 };
