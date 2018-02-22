@@ -80,7 +80,7 @@ module.exports = (app)=>{
     //messaging page
     pageRoutes.get('/messaging', userController.loginRequired, pageController.renderMessagingPage);
 
-    pageRoutes.get('/account', userController.loginRequired, userController.userInfo, pageController.renderAccountPage);
+    pageRoutes.get('/account', userController.loginRequired, pageController.renderAccountPage);
     
     //page router
     app.use('/', pageRoutes);
