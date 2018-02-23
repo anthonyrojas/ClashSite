@@ -69,7 +69,7 @@ module.exports = (app)=>{
     pageRoutes.get('/player/:tag', cache('2 minutes'), clanController.getPlayer, clanController.getPlayerBattles, clanController.getPlayerChests, pageController.renderPlayerPage);
 
     //search page
-    pageRoutes.get('/search', cache('2 minutes'), pageController.renderSearchPage);
+    pageRoutes.get('/search', pageController.renderSearchPage);
 
     //login page
     pageRoutes.get('/login', pageController.renderLoginPage);

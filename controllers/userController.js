@@ -18,16 +18,32 @@ exports.register = (req, res, next)=>{
     const passwordEntry = req.body.password;
     const playerTagEntry = req.body.playerTag;
 
+    var errString = '';
+    //TODO: make an error var to collect error messages and display it back to the user as a url query string
     if(!emailEntry){
-        return res.status(422).send({error: 'You must enter an email.'});
+        //return res.status(422).send({error: 'You must enter an email.'});
+        errString = errString + 'email=err';
     }
     if(!passwordEntry){
-        return res.status(422).send({error: 'You must enter a password.'});
+        //return res.status(422).send({error: 'You must enter a password.'});
+        if(errString == ''){
+            errString = errString + 'password=err';
+        }else{
+            errString = errString + '&password=err';
+        }
     }
     if(!playerTagEntry){
-        return res.status(422).send({error: 'You must enter a player tag.'});
+        //return res.status(422).send({error: 'You must enter a player tag.'});
+        if(errString == ''){
+            errString = errString + 'tag=err';
+        }else{
+            errString = errString + '&tag=err';
+        }
     }
 
+    if(errString != ''){
+        return res.redirect('/register?' + errString);
+    }
     //check if a user with the player tag exists
     User.findOne({playerTag: playerTagEntry}, (err, existingUser)=>{
         if(err){
@@ -35,14 +51,16 @@ exports.register = (req, res, next)=>{
         }
         //return error if user exists
         if(existingUser){
-            return res.status(422).send({error: 'The player tag you have entered is already in use.'});
+            return res.redirect('/register?tag=takenErr');
+            //return res.status(422).send({error: 'The player tag you have entered is already in use.'});
         }
         //obtain the user name for the new user if the player tag does not exist
         axios.get(config.host + '/player/' + playerTagEntry, crapiConfig)
         .then(response=>{
             const usernameEntry = response.data.name;
             if(usernameEntry === null || usernameEntry === "" || usernameEntry == undefined ){
-                return res.status(422).send({error: 'Player information not found. Invalid tag.'});
+                return res.redirect('/register?tag=err');
+                //return res.status(422).send({error: 'Player information not found. Invalid tag.'});
             }
             //create and save the user if it does not exist
             const salt = bcrypt.genSaltSync(10);//generate salt with factor 10
@@ -61,14 +79,16 @@ exports.register = (req, res, next)=>{
                     });
                 }else{
                     user.password = undefined;
-                    res.json(user);
+                    return res.redirect('/login?register=success');
+                    //res.json(user);
                 }
             });
         })
         .catch(error=>{
             const errStatus = error.response.status;
             if(errStatus === 404 || errStatus === 400){
-                return res.status(422).send({error: 'Player information not found. Invalid tag. Input a valid player tag.'});
+                return res.redirect('/register?tag=err');
+                //return res.status(422).send({error: 'Player information not found. Invalid tag. Input a valid player tag.'});
             }
             else if(errStatus === 503){
                 return res.status(422).send({error: 'The service from which we draw data is currently down. Please try to register again later.'});
@@ -139,8 +159,8 @@ exports.loginRequired = (req, res, next)=>{
                 next();
             }
             else{
-                //res.redirect('/login?error=login');
-                return res.status(401).json({message: 'Unauthorized user!'});
+                return res.redirect('/login?error=login');
+                //return res.status(401).json({message: 'Unauthorized user!'});
             }
         }
     });

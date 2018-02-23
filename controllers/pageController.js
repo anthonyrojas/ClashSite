@@ -47,18 +47,34 @@ exports.renderLoginPage = (req, res, next)=>{
     if(req.query.error){
         var authError = req.query.error;
         if(authError === 'auth'){
-            res.render(path.resolve('./public/views/login'), {error: {message: 'Authentication failed. Invalid player tag or password'}});
-        }else if(authError === 'login'){
-            res.render(path.resolve('./public/views/login'), {error: {message: 'Authentication failed. Log in again. Your sign in token seems to be corrupted or is no longer valid.'}});
+            res.render(path.resolve('./public/views/login'), {error: {message: 'Authentication failed. Invalid player tag or password'}, success: null});
+        }else{
+            res.render(path.resolve('./public/views/login'), {error: {message: 'Authentication failed. Log in again. Your sign in token seems to be corrupted or is no longer valid.'}, success: null});
         }
+    }else if(req.query.register){
+        res.render(path.resolve('./public/views/login'), {error: null, success: {message: 'Congratulations! Your registration was successful! Pleas sign in.'}});
     }else{
-        res.render(path.resolve('./public/views/login'), {error: null});
+        res.render(path.resolve('./public/views/login'), {error: null, success: null});
     }
 }
 
 //render the register page
 exports.renderRegisterPage = (req, res, next)=>{
-    res.render(path.resolve('./public/views/register'), null);
+    if(req.query.tag || req.query.email || req.query.password){
+        var errorData = {
+            tagErr: req.query.tag,
+            emailErr: req.query.email,
+            passwordErr: req.query.password
+        };
+        res.render(path.resolve('./public/views/register'), {error: errorData});
+    }else{
+        var errorData = {
+            tagErr: null,
+            emailErr: null,
+            passwordErr: null
+        };
+        res.render(path.resolve('./public/views/register'), {error: errorData});
+    }
 }
 
 //render the messaging page
