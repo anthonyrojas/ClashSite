@@ -54,19 +54,19 @@ module.exports = (app)=>{
     
     //routes for serving static pages
     //index page
-    pageRoutes.get('/', userController.checkLogin, filesController.getIndexPictures, clanController.getNormies, pageController.renderIndexPage);
+    pageRoutes.get('/', cache('30 seconds'), userController.checkLogin, filesController.getIndexPictures, clanController.getNormies, pageController.renderIndexPage);
 
     //normies clan page
-    pageRoutes.get('/clan', userController.checkLogin, clanController.getNormies, pageController.renderClanPage);
+    pageRoutes.get('/clan', cache('30 seconds'), userController.checkLogin, clanController.getNormies, pageController.renderClanPage);
     
     //clan page
-    pageRoutes.get('/clan/:tag', userController.checkLogin, clanController.getClan, pageController.renderClanPage);
+    pageRoutes.get('/clan/:tag', cache('30 seconds'), userController.checkLogin, clanController.getClan, pageController.renderClanPage);
 
     //about page
-    pageRoutes.get('/about', userController.checkLogin, pageController.renderAboutPage);
+    pageRoutes.get('/about', cache('30 seconds'), userController.checkLogin, pageController.renderAboutPage);
 
     //player info page
-    pageRoutes.get('/player/:tag', userController.checkLogin, clanController.getPlayer, clanController.getPlayerBattles, clanController.getPlayerChests, pageController.renderPlayerPage);
+    pageRoutes.get('/player/:tag', cache('30 seconds'), userController.checkLogin, clanController.getPlayer, clanController.getPlayerBattles, clanController.getPlayerChests, pageController.renderPlayerPage);
 
     //search page
     pageRoutes.get('/search', userController.checkLogin, pageController.renderSearchPage);
