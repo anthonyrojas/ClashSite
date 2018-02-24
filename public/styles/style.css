@@ -206,6 +206,27 @@ main [class^="col"]{
     padding: 0 1em 0 1em;
 }
 
+.chat-box{
+    height: 100vh;
+    margin: 0;
+    padding: 1em;
+    overflow-y: hidden;
+    background: linear-gradient(to bottom, #283E51, #4B79A1 );
+    border-radius: 1em;
+    background-repeat: no-repeat;
+}
+
+.message-box{
+    width: 100%;
+    background: linear-gradient(to bottom, green, #DEF5E3);
+    border-radius: 3em;
+    padding: 0.5em;
+    margin-bottom: 0.5em;
+    text-align: left;
+    font-family: 'Roboto Slab', sans-serif;
+    color: black;
+}
+
 @media screen and (max-width: 480px){
     #banner{
         margin-top: 5em;

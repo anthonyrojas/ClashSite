@@ -54,8 +54,27 @@
         <img class="img-fluid" src="/media/header/banner.png" id="banner" alt="banner logo">
     </header>
     <main class="container" id="wrapper">
+        <h3>Normies Chat</h3>
+        <br/>
+        <div class="chat-box">
+            <%if(messages != null){%>
+                <%messages.forEach(function(message){%>
+                    <div class="message-box">
+                        <%=message.content%>
+                    </div>
+                <%});%>
+            <%}%>
+        </div>
+        <br/>
         <form action="/api/chat/send" method="post">
-            <input type="textarea" name="content" placeholder="message contents..."/>
+            <div class="form-row">
+                <div class="col-10">
+                    <input class="form-control" type="text" name="content" placeholder="enter a message...">
+                </div>
+                <div class="col-2">
+                    <button type="submit" class="btn" id="sendButton">Send</button>
+                </div>
+            </div>
         </form>
     </main>
     <footer>
