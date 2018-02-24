@@ -54,33 +54,34 @@ module.exports = (app)=>{
     
     //routes for serving static pages
     //index page
-    pageRoutes.get('/', cache('2 minutes'), filesController.getIndexPictures, clanController.getNormies, pageController.renderIndexPage);
+    pageRoutes.get('/', userController.checkLogin, filesController.getIndexPictures, clanController.getNormies, pageController.renderIndexPage);
 
     //normies clan page
-    pageRoutes.get('/clan', cache('2 minutes'), clanController.getNormies, pageController.renderClanPage);
+    pageRoutes.get('/clan', userController.checkLogin, clanController.getNormies, pageController.renderClanPage);
     
     //clan page
-    pageRoutes.get('/clan/:tag', cache('2 minutes'), clanController.getClan, pageController.renderClanPage);
+    pageRoutes.get('/clan/:tag', userController.checkLogin, clanController.getClan, pageController.renderClanPage);
 
     //about page
-    pageRoutes.get('/about', pageController.renderAboutPage);
+    pageRoutes.get('/about', userController.checkLogin, pageController.renderAboutPage);
 
     //player info page
-    pageRoutes.get('/player/:tag', cache('2 minutes'), clanController.getPlayer, clanController.getPlayerBattles, clanController.getPlayerChests, pageController.renderPlayerPage);
+    pageRoutes.get('/player/:tag', userController.checkLogin, clanController.getPlayer, clanController.getPlayerBattles, clanController.getPlayerChests, pageController.renderPlayerPage);
 
     //search page
-    pageRoutes.get('/search', pageController.renderSearchPage);
+    pageRoutes.get('/search', userController.checkLogin, pageController.renderSearchPage);
 
     //login page
-    pageRoutes.get('/login', pageController.renderLoginPage);
+    pageRoutes.get('/login', userController.checkLogin, pageController.renderLoginPage);
 
     //registration page
-    pageRoutes.get('/register', pageController.renderRegisterPage);
+    pageRoutes.get('/register', userController.checkLogin, pageController.renderRegisterPage);
 
     //messaging page
-    pageRoutes.get('/messaging', userController.loginRequired, pageController.renderMessagingPage);
+    pageRoutes.get('/chat', userController.loginRequired, chatController.getMessages, pageController.renderMessagingPage);
 
-    pageRoutes.get('/account', userController.loginRequired, pageController.renderAccountPage);
+    //account information page
+    pageRoutes.get('/account', userController.checkLogin, userController.loginRequired, pageController.renderAccountPage);
     
     //page router
     app.use('/', pageRoutes);

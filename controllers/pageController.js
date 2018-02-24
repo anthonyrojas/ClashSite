@@ -19,27 +19,27 @@ exports.renderIndexPage = (req, res, next)=>{
             topEarner = member;
         }
     });
-    res.render(path.resolve('./public/views/index'), {leader: leaderMember, top: topEarner, pics: res.locals.indexPics });
+    res.render(path.resolve('./public/views/index'), {leader: leaderMember, top: topEarner, pics: res.locals.indexPics, loggedIn: res.locals.isAuth });
 };
 
 /*render the clan page*/
 exports.renderClanPage = (req, res, next)=>{
-    res.render(path.resolve('./public/views/clan'), {data: res.locals.clan});
+    res.render(path.resolve('./public/views/clan'), {data: res.locals.clan, loggedIn: res.locals.isAuth});
 };
 
 /*render a player page*/
 exports.renderPlayerPage = (req, res, next)=>{
-    res.render(path.resolve('./public/views/player'), {data: res.locals.player, battles: res.locals.playerBattles, chests: res.locals.playerChests});
+    res.render(path.resolve('./public/views/player'), {data: res.locals.player, battles: res.locals.playerBattles, chests: res.locals.playerChests, loggedIn: res.locals.isAuth});
 };
 
 /*render the about page*/
 exports.renderAboutPage = (req, res, next)=>{
-    res.render(path.resolve('./public/views/about'), null);
+    res.render(path.resolve('./public/views/about'), {loggedIn: res.locals.isAuth});
 };
 
 /*render the search page*/
 exports.renderSearchPage = (req, res, next)=>{
-    res.render(path.resolve('./public/views/search'), null);
+    res.render(path.resolve('./public/views/search'), {loggedIn: res.locals.isAuth});
 }
 
 //render the login page
@@ -47,14 +47,16 @@ exports.renderLoginPage = (req, res, next)=>{
     if(req.query.error){
         var authError = req.query.error;
         if(authError === 'auth'){
-            res.render(path.resolve('./public/views/login'), {error: {message: 'Authentication failed. Invalid player tag or password'}, success: null});
+            res.render(path.resolve('./public/views/login'), {error: {message: 'Authentication failed. Invalid player tag or password'}, success: null, loggedIn: res.locals.isAuth});
         }else{
-            res.render(path.resolve('./public/views/login'), {error: {message: 'Authentication failed. Log in again. Your sign in token seems to be corrupted or is no longer valid.'}, success: null});
+            res.render(path.resolve('./public/views/login'), {error: {message: 'Authentication failed. Log in again. Your sign in token seems to be corrupted or is no longer valid.'}, success: null, loggedIn: res.locals.isAuth});
         }
     }else if(req.query.register){
-        res.render(path.resolve('./public/views/login'), {error: null, success: {message: 'Congratulations! Your registration was successful! Pleas sign in.'}});
+        res.render(path.resolve('./public/views/login'), {error: null, success: {message: 'Congratulations! Your registration was successful! Pleas sign in.'}, loggedIn: res.locals.isAuth});
+    }else if(res.locals.isAuth == true){
+        res.redirect('/account');
     }else{
-        res.render(path.resolve('./public/views/login'), {error: null, success: null});
+        res.render(path.resolve('./public/views/login'), {error: null, success: null, loggedIn: res.locals.isAuth});
     }
 }
 
@@ -66,25 +68,28 @@ exports.renderRegisterPage = (req, res, next)=>{
             emailErr: req.query.email,
             passwordErr: req.query.password
         };
-        res.render(path.resolve('./public/views/register'), {error: errorData});
+        res.render(path.resolve('./public/views/register'), {error: errorData, loggedIn: res.locals.isAuth});
     }else{
         var errorData = {
             tagErr: null,
             emailErr: null,
             passwordErr: null
         };
-        res.render(path.resolve('./public/views/register'), {error: errorData});
+        if(res.locals.isAuth == true){
+            res.redirect('/account');
+        }else{
+            res.render(path.resolve('./public/views/register'), {error: errorData, loggedIn: res.locals.isAuth});
+        }
     }
 }
 
 //render the messaging page
-exports.renderMessagingPage = (req, res, next)=>{
-    res.render(path.resolve('./public/views/messages'), null);
+exports.renderMessagingPage = function(req, res, next){
+    res.render(path.resolve('./public/views/messages'), {messages: res.locals.messages});
 }
 
 //render the account page
 exports.renderAccountPage = (req, res, next)=>{
-    const user = req.user;
-    console.log(user);
-    res.render(path.resolve('./public/views/account'), {user: user});
+    //console.log(user);
+    res.render(path.resolve('./public/views/account'), {user: req.user, loggedIn: res.locals.isAuth});
 };

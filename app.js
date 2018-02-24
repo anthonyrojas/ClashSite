@@ -64,5 +64,5 @@ app.get('*', function(req, res, next) {
 
 app.use((err, req, res, next)=>{
     res.status(err.status);
-    res.render(path.resolve('./public/views/error'), {status: err.status, message: err.message});
+    res.render(path.resolve('./public/views/error'), {status: err.status, message: err.message, loggedIn:false});
 });

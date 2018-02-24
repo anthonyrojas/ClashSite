@@ -18,35 +18,11 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand" href="#">
-                <img src="/media/nav/navbrand.png" width="40" height="40" class="d-inline-block align-top" alt="navbar brand">
-                    The Normies
-            </a>                
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="navbar-nav mr-auto mt-2 mt-md-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/clan">Our Clan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/search">Search</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/about">About <span class="sr-only">(current)</span></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <% include ./partials/nav %>
         <img class="img-fluid" src="/media/header/banner.png" id="banner">
     </header>
-    <main>
-        <div class="container" id="wrapper">
+    <main class="container" id="wrapper">
+        <!--<div class="container" id="wrapper">-->
             <h4>Site Powered By: </h4>
             <br/>
             <div class="card-deck mx-auto" id="about-deck">
@@ -84,18 +60,6 @@
                         </p>
                     </div>
                 </div>
-                <!--<div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Package Manager</h4>
-                    </div>
-                    <img class="card-img-top" src="../media/about/npm.jpg">
-                    <div class="card-block">
-                        <h4 class="card-title">NPM</h4>
-                        <p class="card-text">
-                            The default package manager for JavaScript. It is responsible for the distribution of packages and dependencies of JavaScript applications.
-                        </p>
-                    </div>
-                </div>-->
                 <div class="card">
                     <div class="card-header">
                         <h4 class="card-title">Server</h4>
@@ -110,7 +74,7 @@
                 </div>
             </div>
             <br/>
-        </div>
+        <!--</div>-->
     </main>
     <footer>
         <% include ./partials/footer %>

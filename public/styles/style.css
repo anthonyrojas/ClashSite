@@ -1,5 +1,30 @@
+html, body{
+    height: 100%;
+}
+main{
+    min-height: 100%;
+}
+
 body{
     background: #343a40!important;
+}
+
+footer{
+    position: relative;
+    clear: both;
+    bottom: 0;
+    width: 100%;
+    background: black;
+    color: antiquewhite;
+    padding-bottom: 2.5em;
+    padding-top: 1em;
+    text-align: center;
+    overflow: hidden;
+}
+
+footer img{
+    max-width: 3em;
+    max-height: 3em
 }
 
 .navbar-brand{
@@ -10,6 +35,10 @@ body{
 
 .nav-item:hover{
     background-color: black;
+}
+
+.nav-link:hover{
+    color: #ffffff;
 }
 
 #bannerSlides{
@@ -55,22 +84,6 @@ body{
     background-color: #434D5A;
     color: white;
     text-align: center;
-}
-
-footer{
-    bottom: 0;
-    width: 100%;
-    background: black;
-    color: antiquewhite;
-    padding-bottom: 2.5em;
-    padding-top: 1em;
-    text-align: center;
-    overflow: hidden;
-}
-
-footer img{
-    max-width: 3em;
-    max-height: 3em
 }
 
 hr{

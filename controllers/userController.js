@@ -152,10 +152,11 @@ exports.loginRequired = (req, res, next)=>{
     const authCookie = req.cookies['Authorization'];
     jwt.verify(authCookie, config.secret, (err, decoded)=>{
         if(err){
-            return res.status(401).json({message: 'Unauthorized user!'});
+            return res.redirect('/login');
+            //return res.status(401).json({message: 'Unauthorized user!'});
         }else{
-            req.user = decoded;
-            if(req.user){
+            if(decoded.email && decoded.playerTag && decoded.username && decoded._id){
+                req.user = decoded;
                 next();
             }
             else{
@@ -168,8 +169,22 @@ exports.loginRequired = (req, res, next)=>{
 
 exports.checkLogin = (req, res, next)=>{
     const authCookie = req.cookies['Authorization'];
-    jwt.verify(authCookie, config.secret, (err, decoded)=>{
-        //see if the user is signed in
-        //this will be used to display different nav items, like messages ...but only when the user is signed in
-    })
+    if(authCookie){
+        jwt.verify(authCookie, config.secret, (err, decoded)=>{
+            if(err){
+                res.locals.isAuth = false;
+                next();
+            }
+            if(decoded.email && decoded.playerTag && decoded.username && decoded._id){
+                res.locals.isAuth = true;
+                next();
+            }
+            //see if the user is signed in
+            //this will be used to display different nav items, like messages ...but only when the user is signed in
+        });
+    }
+    else{
+        res.locals.isAuth = false;
+        next();
+    }
 };

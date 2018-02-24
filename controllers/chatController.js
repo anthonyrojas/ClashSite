@@ -24,8 +24,14 @@ exports.sendMessage = (req, res, next)=>{
 exports.getMessages = (req, res, next)=>{
     Message.find((err, messsages)=>{
         if(err){
-            res.status(422).json({error: 'Failed to retrieve messages.'});
+            return res.status(422).json({error: 'Failed to retrieve messages.'});
+        }else if(messsages != null || messages != undefined){
+            res.locals.messages = messsages;
+            next(); 
+        }else{
+            res.locals.messages = null;
+            next();
         }
-        res.json(messsages);
+        //return res.json(messsages);
     });
 };

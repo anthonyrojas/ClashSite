@@ -22,35 +22,11 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="myNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand" href="#">
-                <img src="/media/nav/navbrand.png" width="40" height="40" class="d-inline-block align-top">
-                    The Normies
-            </a>                
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="navbar-nav mr-auto mt-2 mt-md-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/clan">Our Clan</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/search">Search<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/about">About</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+        <% include ./partials/nav %>
         <img class="img-fluid" src="/media/header/banner.png" id="banner" alt="banner logo">
     </header>
-    <main>
-        <div class="container" id="wrapper">
+    <main class="container" id="wrapper">
+        <!--<div class="container" id="wrapper">-->
             <div class="row" id="error-space">
             </div>
             <div class="card">
@@ -87,7 +63,7 @@
                     <br/>
                 </div>
             </div>
-        </div>
+        <!--</div>-->
     </main>
     <footer>
         <% include ./partials/footer %>
