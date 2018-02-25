@@ -210,7 +210,7 @@ main [class^="col"]{
     height: 100vh;
     margin: 0;
     padding: 1em;
-    overflow-y: hidden;
+    overflow-y: scroll;
     background: linear-gradient(to bottom, #283E51, #4B79A1 );
     border-radius: 1em;
     background-repeat: no-repeat;
