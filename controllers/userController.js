@@ -188,3 +188,8 @@ exports.checkLogin = (req, res, next)=>{
         next();
     }
 };
+
+exports.logout = (req, res, next)=>{
+    res.clearCookie('Authorization');
+    res.redirect('/login');
+}

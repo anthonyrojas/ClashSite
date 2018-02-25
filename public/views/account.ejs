@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Login</title>
+    <title>My Account</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="shortcut icon" href="/media/favicon/icon.png">
     <!--bootstrap-->
@@ -29,9 +29,23 @@
             <div class="card">
                 <h3 class="card-header display-5"><%= user.username%></h3>
                 <div class="card-block">
-                    <h4>Player Tag: <%= user.playerTag%></h4>
-                    <h4>Email: <%= user.email%></h4>
+                    <div class="row">
+                        <div class="col-12">
+                            <h4>Player Tag: <%= user.playerTag%></h4>
+                        </div>
+                    </div>
+                    <br/><br/>
+                    <div class="row">
+                        <div class="col-12">
+                            <h4>Email: <%= user.email%></h4>
+                        </div>
+                    </div>
                 </div>
+                <br/><br/>
+                <form action="/api/logout" method="POST">
+                    <button class="btn btn-danger" type="submit">Logout</button>
+                </form>
+                <br/><br/>
             </div>
         <!--</div>-->
     </main>

@@ -30,6 +30,8 @@ module.exports = (app)=>{
 
     apiRoutes.post('/login', userController.signIn);
 
+    apiRoutes.post('/logout', userController.logout);
+
     app.use('/api', apiRoutes);
 
     //chat routes

@@ -51,7 +51,7 @@ exports.renderLoginPage = (req, res, next)=>{
         }else{
             res.render(path.resolve('./public/views/login'), {error: {message: 'Authentication failed. Log in again. Your sign in token seems to be corrupted or is no longer valid.'}, success: null, loggedIn: res.locals.isAuth});
         }
-    }else if(req.query.register){
+    }else if(req.query.register === 'success'){
         res.render(path.resolve('./public/views/login'), {error: null, success: {message: 'Congratulations! Your registration was successful! Pleas sign in.'}, loggedIn: res.locals.isAuth});
     }else if(res.locals.isAuth == true){
         res.redirect('/account');
