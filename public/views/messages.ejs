@@ -56,29 +56,50 @@
     <main class="container" id="wrapper">
         <h3>Normies Chat</h3>
         <br/>
-        <div class="chat-box">
-            <%if(messages != null){%>
-                <%messages.forEach(function(message){%>
-                    <div class="message-box">
-                        <%=message.content%>
-                    </div>
-                <%});%>
-            <%}%>
-        </div>
-        <br/>
-        <form action="/api/chat/send" method="post">
-            <div class="form-row">
-                <div class="col-10">
-                    <input class="form-control" type="text" name="content" placeholder="enter a message...">
-                </div>
-                <div class="col-2">
-                    <button type="submit" class="btn" id="sendButton">Send</button>
-                </div>
+        <div id="normies-chat">
+            <button id="fullScreenButton" class="btn btn-primary" onclick="makeFullScreen()">Show Full Screen</button>
+            <button id="resetScreenButton" class="btn btn-primary" onclick="resetChatScreen()" style="display:none">Reset Screen</button>
+            <div class="chat-box">
+                <%if(messages != null){%>
+                    <%messages.forEach(function(message){%>
+                        <div class="message-box">
+                            <div class="message-box-user"><%=message.sender.username%> #<%=message.sender.playerTag%></div>
+                            <div class="message-box-content"><%=message.content%></div>
+                            <div class="message-box-date"><%=message.dateCreated.toLocaleDateString()%> <%=message.dateCreated.toLocaleTimeString()%></div>
+                        </div>
+                    <%});%>
+                <%}%>
             </div>
-        </form>
+            <br/>
+            <form action="/api/chat/send" method="post" id="message-input-form">
+                <div class="form-row">
+                    <div class="col-10">
+                        <input class="form-control message-input" type="text" name="content" placeholder="enter a message..." autocomplete="off">
+                    </div>
+                    <div class="col-2">
+                        <button type="submit" class="btn" id="sendButton">Send</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </main>
     <footer>
         <% include ./partials/footer %>
     </footer>
+    <script>
+        //TODO: make the input field fixed to the bottom in full screen
+        function makeFullScreen(){
+            $("#normies-chat").css({'overflow-x': 'hidden'});
+            $('#message-input-form').css({'position':'fixed', 'bottom':'0'});
+            $('main').removeClass('container');
+            $('header').css({'display':'none'});
+            $('footer').css({'display': 'none'});
+            $('#fullScreenButton').css({'display':'none'});
+            $('#resetScreenButton').css({'display':'inherit', 'text-align':'center'});
+        }
+        function resetChatScreen(){
+            window.location="/chat";
+        }
+    </script>
 </body>
 </html>

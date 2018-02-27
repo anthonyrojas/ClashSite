@@ -22,16 +22,27 @@ exports.sendMessage = (req, res, next)=>{
 };
 
 exports.getMessages = (req, res, next)=>{
-    Message.find((err, messsages)=>{
+    Message.find().populate('sender').exec((err, messages)=>{
         if(err){
             return res.status(422).json({error: 'Failed to retrieve messages.'});
-        }else if(messsages != null || messages != undefined){
-            res.locals.messages = messsages;
+        }else if(messages != null || messages != undefined){
+            res.locals.messages = messages;
+            next();
+        }else{
+            res.locals.messages = null;
+            next();
+        }
+    });
+    /*Message.find((err, messages)=>{
+        if(err){
+            return res.status(422).json({error: 'Failed to retrieve messages.'});
+        }else if(messages != null || messages != undefined){
+            res.locals.messages = messages;
             next(); 
         }else{
             res.locals.messages = null;
             next();
         }
         //return res.json(messsages);
-    });
+    });*/
 };
