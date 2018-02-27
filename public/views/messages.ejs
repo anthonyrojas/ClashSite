@@ -87,15 +87,15 @@
         <% include ./partials/footer %>
     </footer>
     <script>
-        //TODO: make the input field fixed to the bottom in full screen
         function makeFullScreen(){
             $("#normies-chat").css({'overflow-x': 'hidden'});
-            $('#message-input-form').css({'position':'fixed', 'bottom':'0'});
+            $('#message-input-form').css({'position':'fixed', 'bottom':'0.5em', 'width':'100%'});
             $('main').removeClass('container');
             $('header').css({'display':'none'});
             $('footer').css({'display': 'none'});
             $('#fullScreenButton').css({'display':'none'});
-            $('#resetScreenButton').css({'display':'inherit', 'text-align':'center'});
+            $('#resetScreenButton').css({'display':'inline', 'text-align':'center'});
+            $('#resetScreenButton').addClass('justify-content-center');
         }
         function resetChatScreen(){
             window.location="/chat";
