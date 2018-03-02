@@ -9,27 +9,27 @@
     <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="navbar-nav mr-auto mt-2 mt-md-0">
             <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" id="homepage-link" href="/">Home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/clan">Our Clan</a>
+                <a class="nav-link" id="clanpage-link" href="/clan">Clan</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/search">Search</a>
+                <a class="nav-link" id="searchpage-link" href="/search">Search</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/about">About</a>
+                <a class="nav-link" id="aboutpage-link" href="/about">About</a>
             </li>
             <% if(loggedIn == true){ %>
                 <li class="nav-item">
-                    <a class="nav-link" href="/chat">Messaging</a>
+                    <a class="nav-link" id="chatpage-link" href="/chat">Messaging</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/account">Account Services</a>
+                    <a class="nav-link" id="accountpage-link" href="/account">Account Services</a>
                 </li>
             <% }else{ %>
                 <li class="nav-item">
-                    <a class="nav-link" href="/login">Account Services</a>
+                    <a class="nav-link" id="loginpage-link" href="/login">Account Services</a>
                 </li>
             <% } %>
         </ul>

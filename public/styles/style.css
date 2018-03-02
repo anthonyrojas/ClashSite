@@ -126,10 +126,25 @@ main [class^="col"]{
     text-decoration: none;
 }
 
+.player-list-name a{
+    color: white;
+}
+
+.player-list-name a:hover{
+    text-decoration: none;
+    color: lightblue;
+    background-color: black;
+}
+
 #player-clantag a{
     text-decoration: none;
     font-weight: bold;
-    color: #95B5FF;
+    color: white;
+}
+
+#player-clantag a:hover{
+    background-color: black;
+    text-decoration: none;
 }
 
 #player-tabs{
@@ -260,11 +275,11 @@ main [class^="col"]{
         font-size: 10px;
     }
 
-    #player-list-name td{
+    .player-list-name td{
         max-width: 2em;
     }
 
-    #player-list-name th{
+    .player-list-name th{
         max-width: 2em;
     }
 
