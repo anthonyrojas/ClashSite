@@ -65,19 +65,36 @@
                         <div class="message-box">
                             <div class="message-box-user"><%=message.sender.username%> #<%=message.sender.playerTag%></div>
                             <div class="message-box-content"><%=message.content%></div>
-                            <div class="message-box-date"><%=message.dateCreated.toLocaleDateString()%> <%=message.dateCreated.toLocaleTimeString()%></div>
+                            <div class="message-box-date"><%= new Date(message.dateCreated).toLocaleDateString()%> <%= new Date(message.dateCreated).toLocaleTimeString()%></div>
                         </div>
                     <%});%>
                 <%}%>
             </div>
+            <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="errorModalLabel">Error</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                    </div>
+                </div>
+                </div>
             <br/>
-            <form action="/api/chat/send" method="post" id="message-input-form">
+            <form id="message-input-form">
                 <div class="form-row">
                     <div class="col-10">
-                        <input class="form-control message-input" type="text" name="content" placeholder="enter a message..." autocomplete="off">
+                        <input class="form-control message-input" type="text" id="content" name="content" placeholder="enter a message..." autocomplete="off">
                     </div>
                     <div class="col-2">
-                        <button type="submit" class="btn" id="sendButton">Send</button>
+                        <button class="btn" id="sendButton" type="submit">Send</button>
                     </div>
                 </div>
             </form>
@@ -85,21 +102,9 @@
     </main>
     <footer>
         <% include ./partials/footer %>
-    </footer>
-    <script>
-        function makeFullScreen(){
-            $("#normies-chat").css({'overflow-x': 'hidden'});
-            $('#message-input-form').css({'position':'fixed', 'bottom':'0.5em', 'width':'100%'});
-            $('main').removeClass('container');
-            $('header').css({'display':'none'});
-            $('footer').css({'display': 'none'});
-            $('#fullScreenButton').css({'display':'none'});
-            $('#resetScreenButton').css({'display':'inline', 'text-align':'center'});
-            $('#resetScreenButton').addClass('justify-content-center');
-        }
-        function resetChatScreen(){
-            window.location="/chat";
-        }
-    </script>
+    </footer> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="/scripts/messagesPage.js"></script>
 </body>
 </html>

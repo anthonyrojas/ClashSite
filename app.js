@@ -49,8 +49,8 @@ const server = app.listen(config.port, ()=>{
 });
 
 /*connect socket io to server*/
-//const io = require('socket.io').listen(server);
-//socketEvents(io);
+const io = require('socket.io').listen(server);
+socketEvents(io);
 
 /*load routes*/
 routes(app);
