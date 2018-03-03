@@ -9,8 +9,7 @@ const jwt = require('jsonwebtoken');
 const pageController = require('./controllers/pageController');
 const clanController = require('./controllers/clanController');
 const filesController = require('./controllers/filesController');
-
-/*TODO: create authentication controls/routes for registration and logging in*/
+const actionsController = require('./controllers/actionsController');
 const userController = require('./controllers/userController');
 const chatController = require('./controllers/chatController');
 
@@ -25,17 +24,18 @@ module.exports = (app)=>{
     let cache = apicache.middleware;
 
     //api routes for user authentication and login
-    //TODO: logout route
     apiRoutes.post('/register', userController.register);
 
     apiRoutes.post('/login', userController.signIn);
 
     apiRoutes.post('/logout', userController.logout);
 
+    apiRoutes.post('/mail', actionsController.sendContactFormEmail);
+
     app.use('/api', apiRoutes);
 
     //chat routes
-    chatRoutes.use((req, res, next)=>{
+    /*chatRoutes.use((req, res, next)=>{
         if(req.headers && req.headers.authorization){
             jwt.verify(req.headers.authorization, config.secret, function(err, decode){
                 if(err) req.user = undefined;
@@ -46,9 +46,7 @@ module.exports = (app)=>{
             req.user = undefined;
             next();
         }
-    });
-
-    chatRoutes.get('/messages', userController.loginRequired, chatController.getMessages);
+    });*/
 
     chatRoutes.post('/send', userController.loginRequired, chatController.sendMessage);
 
@@ -65,7 +63,7 @@ module.exports = (app)=>{
     pageRoutes.get('/clan/:tag', cache('30 seconds'), userController.checkLogin, clanController.getClan, pageController.renderClanPage);
 
     //about page
-    pageRoutes.get('/about', cache('30 seconds'), userController.checkLogin, pageController.renderAboutPage);
+    pageRoutes.get('/about', userController.checkLogin, pageController.renderAboutPage);
 
     //player info page
     pageRoutes.get('/player/:tag', cache('30 seconds'), userController.checkLogin, clanController.getPlayer, clanController.getPlayerBattles, clanController.getPlayerChests, pageController.renderPlayerPage);

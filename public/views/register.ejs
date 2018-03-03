@@ -64,12 +64,12 @@
                             <div class="col-md-4">
                                 <%if(error.emailErr){%>
                                     <label for="inputEmail">Email</label>
-                                    <input type="text" class="form-control is-invalid" name="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email" required>
+                                    <input type="email" class="form-control is-invalid" name="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email" required>
                                     <small id="emailHelp" class="form-text text-muted">Please enter a valid email. It will be used for password resets.</small>
                                     <div class="invalid-tooltip">Enter a valid email.</div>
                                 <%}else{%>
                                     <label for="inputEmail">Email</label>
-                                    <input type="text" class="form-control" name="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email" required oninvalid="this.setCustomValidity('Enter a valid email')" oninput="setCustomValidity('')">
+                                    <input type="email" class="form-control" name="email" id="inputEmail" aria-describedby="emailHelp" placeholder="Enter email" required oninvalid="this.setCustomValidity('Enter a valid email')" oninput="setCustomValidity('')">
                                     <small id="emailHelp" class="form-text text-muted">Please enter a valid email. It will be used for password resets.</small>
                                 <%}%>
                             </div>

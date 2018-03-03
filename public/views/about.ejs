@@ -22,59 +22,104 @@
         <img class="img-fluid" src="/media/header/banner.png" id="banner">
     </header>
     <main class="container" id="wrapper">
-        <!--<div class="container" id="wrapper">-->
-            <h4>Site Powered By: </h4>
-            <br/>
-            <div class="card-deck mx-auto" id="about-deck">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Server Side Language</h4>
-                    </div>
-                    <img class="card-img-top" src="../media/about/nodejs.png">
-                    <div class="card-block">
-                        <h4 class="card-title">Node JS</h4>
-                        <p class="card-text">
-                            NodeJS is a server-side language that uses an event-driven, non-blocking I/O model that makes it lightweight and efficient.
-                        </p>
-                    </div>
+        <h4>Site Powered By: </h4>
+        <br/>
+        <div class="card-deck mx-auto" id="about-deck">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Server Side Language</h4>
                 </div>
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Framework</h4>
-                    </div>
-                    <img class="card-img-top" src="../media/about/expressjs.png">
-                    <div class="card-block">
-                        <h4 class="card-title">Express JS</h4>
-                        <p class="card-text">A web application framework for NodeJS intended for simplifying the building of web applications and API's.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Database</h4>
-                    </div>
-                    <img class="card-img-top" src="../media/about/mongo-db.png">
-                    <div class="card-block">
-                        <h4 class="card-title">MongoDB</h4>
-                        <p class="card-text">
-                            A no-SQL database with a format very similair to JSON, which allows for seamless integration with JavaScript.
-                        </p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Server</h4>
-                    </div>
-                    <img class="card-img-top" src="../media/about/nginx.png">
-                    <div class="card-block">
-                        <h4 class="card-title">NginX</h4>
-                        <p class="card-text">
-                            A web server that can also be used as a reverse proxy, load balancer and HTTP cache.
-                        </p>
-                    </div>
+                <img class="card-img-top" src="../media/about/nodejs.png">
+                <div class="card-block">
+                    <h4 class="card-title">Node JS</h4>
+                    <p class="card-text">
+                        NodeJS is a server-side language that uses an event-driven, non-blocking I/O model that makes it lightweight and efficient.
+                    </p>
                 </div>
             </div>
-            <br/>
-        <!--</div>-->
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Framework</h4>
+                </div>
+                <img class="card-img-top" src="../media/about/expressjs.png">
+                <div class="card-block">
+                    <h4 class="card-title">Express JS</h4>
+                    <p class="card-text">A web application framework for NodeJS intended for simplifying the building of web applications and API's.</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Database</h4>
+                </div>
+                <img class="card-img-top" src="../media/about/mongo-db.png">
+                <div class="card-block">
+                    <h4 class="card-title">MongoDB</h4>
+                    <p class="card-text">
+                        A no-SQL database with a format very similar to JSON, which allows for seamless integration with JavaScript.
+                    </p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Server</h4>
+                </div>
+                <img class="card-img-top" src="../media/about/nginx.png">
+                <div class="card-block">
+                    <h4 class="card-title">NginX</h4>
+                    <p class="card-text">
+                        A web server that can also be used as a reverse proxy, load balancer and HTTP cache.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="serverResponse">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6" id="serverMessageResponse"></div>
+            <div class="col-sm-3"></div>
+        </div>
+        <form id="mailForm">
+            <div class="form-row">
+                <div class="col-sm-12">
+                    <h3>Contact Me: </h3>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <label for="emailInput">Email Address</label>
+                        <input type="email" class="form-control" id="emailInput" placeholder="name@email.com" autocomplete="off" oninvalid="this.setCustomValidity('Enter a valid email')" oninput="setCustomValidity('')" required>
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <label for="emailInput">Subject</label>
+                        <input type="text" class="form-control" id="subjectInput" placeholder="Topic for emailing Sir Doge..." autocomplete="off" oninvalid="this.setCustomValidity('Enter a subject')" oninput="setCustomValidity('')" required>
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-3"></div>
+                    <div class="col-sm-6">
+                        <label for="emailMessageInput">Email Message</label>
+                        <textarea class="form-control" id="emailMessageInput" rows="5" autocomplete="off" oninvalid="this.setCustomValidity('Enter an email message.')" oninput="setCustomValidity('')" required></textarea>
+                    </div>
+                    <div class="col-sm-3"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <button class="btn btn-primary" type="submit" id="sendMailButton">Send</button>
+                </div>
+            </div>
+        </form>
+        <br/><br/>
     </main>
     <footer>
         <% include ./partials/footer %>
@@ -84,5 +129,7 @@
             $('#aboutpage-link').addClass('active');
         }
     </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+    <script src="/scripts/aboutPage.js"></script>
 </body>
 </html>

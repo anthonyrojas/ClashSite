@@ -13,7 +13,6 @@
     "bcrypt-nodejs": "*",
     "body-parser": "*",
     "cookie-parser": "*",
-    "crypto": "*",
     "dateformat": "*",
     "express": "*",
     "ejs": "*",
@@ -22,7 +21,7 @@
     "mongodb": "*",
     "mongoose": "*",
     "morgan": "*",
-    "multer": "*",
+    "nodemailer": "*",
     "path": "*",
     "socket.io": "*"
   },

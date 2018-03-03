@@ -3,9 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const multer = require('multer');
 const mongoose = require('mongoose');
-const upload = multer();
 const routes = require('./routes');
 const path = require('path');
 const socketEvents = require('./socketEvents');
@@ -32,7 +30,6 @@ if(process.env.NODE_ENV === 'production'){
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
-//app.use(multer()); //for uploading files, will include in a future version
 
 /*Enable CORS from client-side*/
 app.use((req, res, next)=>{
