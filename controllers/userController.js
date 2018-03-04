@@ -192,4 +192,24 @@ exports.checkLogin = (req, res, next)=>{
 exports.logout = (req, res, next)=>{
     res.clearCookie('Authorization');
     res.redirect('/login');
+};
+
+exports.updateEmail = (req, res, next)=>{
+    const user = req.user;
+    const updatedEmail = req.body.email;
+    User.findOneAndUpdate({playerTag: user.playerTag}, {email: updatedEmail}, (err, updated)=>{
+        if(err){
+            res.status(401).json({message: 'Could not update user email.'});
+        }else{
+            res.clearCookie('Authorization');
+            //for dev and testing:
+            if(process.env.NODE_ENV === 'production'){
+                //for production:
+                res.cookie('Authorization', jwt.sign({email: updatedEmail, playerTag: user.playerTag, username: user.username, _id: user._id}, config.secret), {secure: true});
+            }else{
+                res.cookie('Authorization', jwt.sign({email: updatedEmail, playerTag: user.playerTag, username: user.username, _id: user._id}, config.secret), {httpOnly: true});
+            }
+            res.status(200).json({message: 'Updated successfully!'});
+        }
+    })
 }

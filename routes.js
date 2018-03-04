@@ -32,6 +32,8 @@ module.exports = (app)=>{
 
     apiRoutes.post('/mail', actionsController.sendContactFormEmail);
 
+    apiRoutes.put('/user/email', userController.loginRequired, userController.updateEmail);
+
     app.use('/api', apiRoutes);
 
     //chat routes

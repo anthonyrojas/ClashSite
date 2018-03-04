@@ -30,16 +30,25 @@
                 <h3 class="card-header display-5"><%= user.username%></h3>
                 <div class="card-block">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-sm-2"></div>
+                        <div class="col-sm-8">
                             <h4>Player Tag: <%= user.playerTag%></h4>
                         </div>
+                        <div class="col-sm-2"></div>
                     </div>
-                    <br/><br/>
-                    <div class="row">
-                        <div class="col-12">
-                            <h4>Email: <%= user.email%></h4>
+                    <form id="changeEmailForm">
+                        <div class="row">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-8" id="emailChangeInput">
+                                <div id="accountEmail">
+                                    <h4>Email: <span id="accountEmailValue"><%= user.email%></span></h4>
+                                </div>
+                            </div>
+                            <div class="col-sm-2" id="editFormBtn">
+                                <button class="btn btn-primary" id="editButton">Edit</button>
+                            </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <br/><br/>
                 <form action="/api/logout" method="POST">
@@ -56,6 +65,36 @@
         window.onload = function(){
             $('#accountpage-link').addClass('active');
         }
+        $(document).on('click', '#editButton', function(e){
+            e.preventDefault();
+            var emailVal = $('#accountEmailValue').text().trim();
+            $('#accountEmail').remove();
+            $('#emailChangeInput').append('<input type="email" id="accountEmailInput" class="form-control" value="'+ emailVal +'" required>');
+            $('#editButton').remove();
+            $('#editFormBtn').append('<button class="btn btn-primary" id="saveEditButton" type="submit">Save</button>');
+        });
+        $('#changeEmailForm').submit(function(e){
+            e.preventDefault();
+            var emailVal = $('#accountEmailInput').val();
+            var email = {};
+            email.email = emailVal;
+            var data = JSON.stringify(email);
+            $('#accountEmailInput').attr('disabled', true);
+            $.ajax({
+                type: 'PUT',
+                data: data,
+                contentType: 'application/json',
+                url: '/api/user/email'
+            }).done(function(data){
+                window.location.reload(true);
+            }).fail(function(err){
+                $('#changeEmailForm').append('<div class="row" id="errorRow">');
+                $('#errorRow').append('<div class="col-sm-2">');
+                $('#errorRow').append('<div class="col-sm-8" id="alert">');
+                $('#errorRow').append('<div class="col-sm-2">');   
+                $('#alert').append('<div class="alert alert-danger alert-dismissible fade show">' + err.message +'<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');                 
+            });
+        });
     </script>
 </body>
 </html>
